@@ -1,0 +1,12 @@
+{
+  "name": "example-skill",
+  "version": "1.0.0",
+  "description": "An example skill demonstrating the Skillport format",
+  "author": {
+    "name": "Your Name",
+    "email": "you@example.com"
+  },
+  "homepage": "https://github.com/your-org/your-marketplace",
+  "license": "MIT",
+  "keywords": ["example", "template", "skillport"]
+}

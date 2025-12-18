@@ -1,0 +1,35 @@
+{
+  "name": "skillport-template",
+  "owner": {
+    "name": "Your Organization",
+    "email": "plugins@example.com"
+  },
+  "metadata": {
+    "description": "Organization plugin marketplace for Claude",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "example-skill",
+      "source": "./plugins/example-skill",
+      "description": "An example skill demonstrating the Skillport format",
+      "version": "1.0.0",
+      "author": {
+        "name": "Your Name"
+      },
+      "category": "examples",
+      "tags": ["example", "template"],
+      
+      "_comment": "Skillport extensions below - Claude Code ignores these",
+      "surfaces": ["claude-code", "claude-desktop", "claude-ai"],
+      "skillPath": "skills/SKILL.md",
+      "permissions": []
+    }
+  ],
+
+  "_skillport": {
+    "_comment": "Skillport-specific marketplace metadata",
+    "version": "1.0.0",
+    "features": ["skill-packaging", "surface-filtering"]
+  }
+}
