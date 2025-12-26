@@ -10,6 +10,21 @@
   },
   "plugins": [
     {
+      "name": "skillport-browser",
+      "source": "./plugins/skillport-browser",
+      "description": "Browse and install Skills from Skillport marketplaces. The bootstrap skill for Skillport.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Crafty CTO"
+      },
+      "category": "core",
+      "tags": ["skillport", "marketplace", "installer"],
+      
+      "surfaces": ["claude-desktop", "claude-ai"],
+      "skillPath": "skills/SKILL.md",
+      "permissions": []
+    },
+    {
       "name": "example-skill",
       "source": "./plugins/example-skill",
       "description": "An example skill demonstrating the Skillport format",
@@ -20,7 +35,6 @@
       "category": "examples",
       "tags": ["example", "template"],
       
-      "_comment": "Skillport extensions below - Claude Code ignores these",
       "surfaces": ["claude-code", "claude-desktop", "claude-ai"],
       "skillPath": "skills/SKILL.md",
       "permissions": []
@@ -28,7 +42,6 @@
   ],
 
   "_skillport": {
-    "_comment": "Skillport-specific marketplace metadata",
     "version": "1.0.0",
     "features": ["skill-packaging", "surface-filtering"]
   }
