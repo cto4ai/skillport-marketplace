@@ -1,0 +1,11 @@
+{
+  "name": "skillport-browser",
+  "version": "1.0.0",
+  "description": "Browse and install Skills from Skillport marketplaces",
+  "author": {
+    "name": "Crafty CTO",
+    "email": "jack@craftycto.com"
+  },
+  "license": "MIT",
+  "keywords": ["skillport", "marketplace", "skills", "installer"]
+}
