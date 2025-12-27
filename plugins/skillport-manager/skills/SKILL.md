@@ -27,13 +27,13 @@ Call `Skillport Connector:get_plugin` with `name` parameter. Present the descrip
 ## Install a Skill
 
 1. **Fetch**: Call `Skillport Connector:fetch_skill` with the skill name.
-   The response contains `plugin` (with name, version) and `files` (array of file objects).
+   The response contains `plugin` (with name, version) and `files` (array of `{path, content}` objects).
 
-2. **Write files**: Pass the response to the install script:
-   ```bash
-   echo '{"name": "SKILLNAME", "files": [...]}' | python scripts/install_skill.py --path <output-directory>
-   ```
-   Run from this skill's directory. The script creates `<output-directory>/SKILLNAME/` and writes all files, handling base64-encoded binary files automatically.
+2. **Write files directly**: Create the skill directory and write each file:
+   - Create directory: `<output-directory>/<skill-name>/`
+   - For each file in the `files` array, write `content` to `<output-directory>/<skill-name>/<path>`
+   - Create any necessary subdirectories (e.g., `scripts/`, `references/`)
+   - Handle binary files: if a file object has `encoding: "base64"`, decode before writing
 
 3. **Package**: Create the .skill zip file:
    ```bash
