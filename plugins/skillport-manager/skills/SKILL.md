@@ -1,12 +1,12 @@
 ---
-name: skillport-browser
+name: skillport-manager
 description: >
-  Browses and installs Skills from Skillport marketplaces. Activates when the 
-  user asks to list available skills, browse a marketplace, install a skill, 
-  check for updates, or mentions "Skillport" in context of skills or plugins.
+  Manages Skills from Skillport marketplaces — browse available skills, install them
+  with one click, and check for updates. Activates when the user asks to list, browse,
+  install, or update skills, or mentions "Skillport" in context of skills or plugins.
 ---
 
-# Skillport Browser
+# Skillport Manager
 
 ## Prerequisites
 
