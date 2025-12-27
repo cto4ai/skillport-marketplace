@@ -34,8 +34,23 @@
       },
       "category": "examples",
       "tags": ["example", "template"],
-      
+
       "surfaces": ["claude-code", "claude-desktop", "claude-ai"],
+      "skillPath": "skills/SKILL.md",
+      "permissions": []
+    },
+    {
+      "name": "data-analyzer",
+      "source": "./plugins/data-analyzer",
+      "description": "Analyze CSV and JSON data files with statistical summaries and visualizations",
+      "version": "1.0.0",
+      "author": {
+        "name": "Crafty CTO"
+      },
+      "category": "examples",
+      "tags": ["data", "csv", "json", "analysis", "statistics"],
+
+      "surfaces": ["claude-desktop", "claude-ai"],
       "skillPath": "skills/SKILL.md",
       "permissions": []
     }
