@@ -2,6 +2,9 @@
 """
 Install skill files to disk from JSON input.
 
+Usage:
+  echo '{"name": "...", "files": [...]}' | python install_skill.py --path <dir>
+
 Reads JSON from stdin with structure:
 {
   "name": "skill-name",
@@ -11,18 +14,17 @@ Reads JSON from stdin with structure:
   ]
 }
 
-Creates /home/claude/{name}/ and writes all files, handling base64-encoded
+Creates <path>/{name}/ and writes all files, handling base64-encoded
 binary files automatically.
 """
 
 import json
 import sys
-import os
 import base64
 from pathlib import Path
 
 
-def install_skill(data: dict) -> str:
+def install_skill(data: dict, output_path: Path) -> str:
     """Install skill files to disk."""
     name = data.get("name")
     files = data.get("files", [])
@@ -34,7 +36,7 @@ def install_skill(data: dict) -> str:
         return "Error: no files to install"
 
     # Create skill directory
-    skill_dir = Path("/home/claude") / name
+    skill_dir = output_path.resolve() / name
     skill_dir.mkdir(parents=True, exist_ok=True)
 
     results = [f"Created {skill_dir}/"]
@@ -78,6 +80,13 @@ def format_size(size_bytes: int) -> str:
 
 
 def main():
+    # Parse --path argument
+    if len(sys.argv) < 3 or sys.argv[1] != '--path':
+        print("Usage: echo '{...}' | python install_skill.py --path <dir>", file=sys.stderr)
+        sys.exit(1)
+
+    output_path = Path(sys.argv[2])
+
     # Read JSON from stdin
     try:
         data = json.load(sys.stdin)
@@ -85,7 +94,7 @@ def main():
         print(f"Error: invalid JSON input - {e}", file=sys.stderr)
         sys.exit(1)
 
-    result = install_skill(data)
+    result = install_skill(data, output_path)
     print(result)
 
 

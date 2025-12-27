@@ -3,20 +3,19 @@
 Package a skill directory into a .skill file (zip archive).
 
 Usage:
-  python package_skill.py /home/claude/skill-name
+  python package_skill.py <skill-directory> [output-directory]
 
-Creates /mnt/user-data/outputs/skill-name.skill
+Creates <output-directory>/skill-name.skill (defaults to current directory)
 """
 
 import sys
-import os
 import zipfile
 from pathlib import Path
 
 
-def package_skill(skill_path: str) -> str:
+def package_skill(skill_path: str, output_dir: str = None) -> str:
     """Create .skill zip from skill directory."""
-    skill_dir = Path(skill_path)
+    skill_dir = Path(skill_path).resolve()
 
     if not skill_dir.exists():
         return f"Error: directory not found: {skill_path}"
@@ -30,29 +29,36 @@ def package_skill(skill_path: str) -> str:
         return f"Error: SKILL.md not found in {skill_path}"
 
     skill_name = skill_dir.name
-    output_dir = Path("/mnt/user-data/outputs")
-    output_dir.mkdir(parents=True, exist_ok=True)
 
-    output_path = output_dir / f"{skill_name}.skill"
+    # Determine output path
+    if output_dir:
+        out_path = Path(output_dir).resolve()
+        out_path.mkdir(parents=True, exist_ok=True)
+    else:
+        out_path = Path.cwd()
+
+    output_file = out_path / f"{skill_name}.skill"
 
     # Create zip archive
-    with zipfile.ZipFile(output_path, 'w', zipfile.ZIP_DEFLATED) as zf:
+    with zipfile.ZipFile(output_file, 'w', zipfile.ZIP_DEFLATED) as zf:
         for file_path in skill_dir.rglob('*'):
             if file_path.is_file():
                 # Archive path includes skill name as root folder
                 arcname = f"{skill_name}/{file_path.relative_to(skill_dir)}"
                 zf.write(file_path, arcname)
 
-    return str(output_path)
+    return str(output_file)
 
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python package_skill.py <skill-directory>", file=sys.stderr)
+        print("Usage: python package_skill.py <skill-directory> [output-directory]", file=sys.stderr)
         sys.exit(1)
 
     skill_path = sys.argv[1]
-    result = package_skill(skill_path)
+    output_dir = sys.argv[2] if len(sys.argv) > 2 else None
+
+    result = package_skill(skill_path, output_dir)
 
     if result.startswith("Error:"):
         print(result, file=sys.stderr)

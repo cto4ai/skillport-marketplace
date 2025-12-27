@@ -29,17 +29,17 @@ Call `Skillport Connector:get_plugin` with `name` parameter. Present the descrip
 1. **Fetch**: Call `Skillport Connector:fetch_skill` with the skill name.
    The response contains `plugin` (with name, version) and `files` (array of file objects).
 
-2. **Write files**: Pass the response to the install script. Create JSON with `name` and `files`:
+2. **Write files**: Pass the response to the install script:
    ```bash
-   echo '{"name": "SKILLNAME", "files": [...]}' | python scripts/install_skill.py
+   echo '{"name": "SKILLNAME", "files": [...]}' | python scripts/install_skill.py --path <output-directory>
    ```
-   Run from this skill's directory. The script creates `/home/claude/SKILLNAME/` and writes all files, handling base64-encoded binary files automatically.
+   Run from this skill's directory. The script creates `<output-directory>/SKILLNAME/` and writes all files, handling base64-encoded binary files automatically.
 
 3. **Package**: Create the .skill zip file:
    ```bash
-   python scripts/package_skill.py /home/claude/SKILLNAME
+   python scripts/package_skill.py <skill-directory> [output-directory]
    ```
-   Returns the path to the created .skill file.
+   Returns the path to the created .skill file. Output directory is optional (defaults to current directory).
 
 4. **Present**: Call `present_files` with the .skill path.
    Tell user: "Click 'Copy to your skills' to install. **Start a new conversation to use the newly installed skill.**"
