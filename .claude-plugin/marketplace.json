@@ -10,9 +10,9 @@
   },
   "plugins": [
     {
-      "name": "skillport-browser",
-      "source": "./plugins/skillport-browser",
-      "description": "Browse and install Skills from Skillport marketplaces. The bootstrap skill for Skillport.",
+      "name": "skillport-manager",
+      "source": "./plugins/skillport-manager",
+      "description": "Manage Skills from Skillport marketplaces — browse, install, and update.",
       "version": "1.0.0",
       "author": {
         "name": "Crafty CTO"

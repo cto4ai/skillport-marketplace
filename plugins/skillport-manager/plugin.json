@@ -1,7 +1,7 @@
 {
-  "name": "skillport-browser",
+  "name": "skillport-manager",
   "version": "1.0.0",
-  "description": "Browse and install Skills from Skillport marketplaces",
+  "description": "Manage Skills from Skillport marketplaces — browse, install, and update",
   "author": {
     "name": "Crafty CTO",
     "email": "jack@craftycto.com"
