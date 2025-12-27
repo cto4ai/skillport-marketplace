@@ -53,7 +53,7 @@ mv SKILLNAME.skill /mnt/user-data/outputs/
 unzip -l /mnt/user-data/outputs/SKILLNAME.skill
 ```
 
-5. **Present**: Call `present_files` with the .skill path. Tell user: "Click 'Copy to your skills' to install."
+5. **Present**: Call `present_files` with the .skill path. Tell user: "Click 'Copy to your skills' to install. **Start a new conversation to use the newly installed skill.**"
 
 ## Check for Updates
 
