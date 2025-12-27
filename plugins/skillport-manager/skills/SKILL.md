@@ -31,13 +31,13 @@ Call `Skillport Connector:get_plugin` with `name` parameter. Present the descrip
 
 2. **Write files**: Pass the response to the install script. Create JSON with `name` and `files`:
    ```bash
-   echo '{"name": "SKILLNAME", "files": [...]}' | python /mnt/skills/user/skillport-manager/scripts/install_skill.py
+   echo '{"name": "SKILLNAME", "files": [...]}' | python scripts/install_skill.py
    ```
-   The script creates `/home/claude/SKILLNAME/` and writes all files, handling base64-encoded binary files automatically.
+   Run from this skill's directory. The script creates `/home/claude/SKILLNAME/` and writes all files, handling base64-encoded binary files automatically.
 
 3. **Package**: Create the .skill zip file:
    ```bash
-   python /mnt/skills/user/skillport-manager/scripts/package_skill.py /home/claude/SKILLNAME
+   python scripts/package_skill.py /home/claude/SKILLNAME
    ```
    Returns the path to the created .skill file.
 
@@ -48,9 +48,9 @@ Call `Skillport Connector:get_plugin` with `name` parameter. Present the descrip
 
 1. **Get installed versions**:
    ```bash
-   python /mnt/skills/user/skillport-manager/scripts/get_versions.py
+   python scripts/get_versions.py
    ```
-   Returns JSON array of `{name, version}` objects.
+   Run from this skill's directory. Returns JSON array of `{name, version}` objects.
 
 2. **Check marketplace**: Call `Skillport Connector:check_updates` with the JSON output.
 
