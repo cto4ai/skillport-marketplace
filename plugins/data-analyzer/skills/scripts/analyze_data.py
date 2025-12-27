@@ -13,6 +13,7 @@ Outputs statistical summary including:
 - Sample rows
 
 v1.1.0: Added Excel (.xlsx) support
+v1.1.1: Added standard deviation to numeric stats
 """
 
 import json
@@ -118,12 +119,18 @@ def calculate_stats(values):
 
     nums.sort()
     n = len(nums)
+    mean = sum(nums) / n
+
+    # Calculate standard deviation
+    variance = sum((x - mean) ** 2 for x in nums) / n
+    std = variance ** 0.5
 
     return {
         "count": n,
         "min": round(nums[0], 2),
         "max": round(nums[-1], 2),
-        "mean": round(sum(nums) / n, 2),
+        "mean": round(mean, 2),
+        "std": round(std, 2),
         "median": round(nums[n // 2], 2) if n % 2 == 1 else round((nums[n // 2 - 1] + nums[n // 2]) / 2, 2)
     }
 
@@ -175,7 +182,7 @@ def analyze(file_path):
         if col_type == "numeric":
             stats = calculate_stats(values)
             if stats:
-                stats_str = f"min={stats['min']}, max={stats['max']}, mean={stats['mean']}"
+                stats_str = f"min={stats['min']}, max={stats['max']}, mean={stats['mean']}, std={stats['std']}"
 
         output.append(f"| {col} | {col_type} | {missing_pct} | {stats_str} |")
 

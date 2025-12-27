@@ -43,7 +43,7 @@
       "name": "data-analyzer",
       "source": "./plugins/data-analyzer",
       "description": "Analyze CSV and JSON data files with statistical summaries and visualizations",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "author": {
         "name": "Crafty CTO"
       },
