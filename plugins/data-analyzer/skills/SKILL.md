@@ -8,12 +8,12 @@ description: >
 
 # Data Analyzer
 
-Analyze structured data files (CSV, JSON) with statistical summaries and quality checks.
+Analyze structured data files (CSV, JSON, Excel) with statistical summaries and quality checks.
 
 ## When to Use
 
 - User asks to "analyze this data" or "summarize this dataset"
-- User wants statistics on a CSV or JSON file
+- User wants statistics on a CSV, JSON, or Excel file
 - User asks about data quality or missing values
 - User wants to understand the structure of their data
 

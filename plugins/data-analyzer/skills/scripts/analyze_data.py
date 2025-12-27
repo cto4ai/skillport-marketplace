@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Analyze CSV or JSON data files.
+Analyze CSV, JSON, or Excel data files.
 
 Usage:
   python analyze_data.py <file-path>
@@ -11,6 +11,8 @@ Outputs statistical summary including:
 - Missing values
 - Basic statistics for numeric columns
 - Sample rows
+
+v1.1.0: Added Excel (.xlsx) support
 """
 
 import json
@@ -75,6 +77,33 @@ def parse_json(file_path):
     return [], []
 
 
+def parse_excel(file_path):
+    """Parse Excel file into list of dicts. Requires openpyxl."""
+    try:
+        from openpyxl import load_workbook
+    except ImportError:
+        return None, "Error: openpyxl not installed. Run: pip install openpyxl"
+
+    wb = load_workbook(file_path, read_only=True, data_only=True)
+    ws = wb.active
+
+    rows_iter = ws.iter_rows(values_only=True)
+    header_row = next(rows_iter, None)
+
+    if not header_row:
+        return [], []
+
+    header = [str(h) if h else f"col_{i}" for i, h in enumerate(header_row)]
+    rows = []
+
+    for row in rows_iter:
+        row_dict = dict(zip(header, row))
+        rows.append(row_dict)
+
+    wb.close()
+    return header, rows
+
+
 def calculate_stats(values):
     """Calculate basic statistics for numeric values."""
     nums = []
@@ -112,8 +141,13 @@ def analyze(file_path):
         header, rows = parse_csv(file_path)
     elif ext == '.json':
         header, rows = parse_json(file_path)
+    elif ext in ('.xlsx', '.xlsm'):
+        result = parse_excel(file_path)
+        if isinstance(result[1], str):  # Error message
+            return result[1]
+        header, rows = result
     else:
-        return f"Error: Unsupported file type: {ext} (use .csv or .json)"
+        return f"Error: Unsupported file type: {ext} (use .csv, .json, or .xlsx)"
 
     if not rows:
         return "Error: No data found in file"

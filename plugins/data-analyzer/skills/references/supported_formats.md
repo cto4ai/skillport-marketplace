@@ -38,6 +38,23 @@ Bob,25,Los Angeles,65000
 ]
 ```
 
+## Excel Files (.xlsx, .xlsm) - NEW in v1.1.0
+
+### Requirements
+- Modern Excel format (.xlsx or .xlsm)
+- First row must contain column headers
+- Reads the active (first) sheet only
+
+### Limitations
+- Legacy .xls format not supported
+- Requires `openpyxl` library (pip install openpyxl)
+- Formulas are read as calculated values
+- Charts and images are ignored
+- Multiple sheets: only the first/active sheet is analyzed
+
+### Example
+Standard Excel spreadsheet with headers in row 1.
+
 ## Data Type Detection
 
 The analyzer automatically detects column types:
