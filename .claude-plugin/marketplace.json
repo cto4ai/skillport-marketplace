@@ -18,9 +18,15 @@
         "name": "Crafty CTO"
       },
       "category": "core",
-      "tags": ["skillport", "marketplace", "installer"],
-      
-      "surfaces": ["claude-desktop", "claude-ai"],
+      "tags": [
+        "skillport",
+        "marketplace",
+        "installer"
+      ],
+      "surfaces": [
+        "claude-desktop",
+        "claude-ai"
+      ],
       "skillPath": "skills/SKILL.md",
       "permissions": []
     },
@@ -28,14 +34,20 @@
       "name": "example-skill",
       "source": "./plugins/example-skill",
       "description": "An example skill demonstrating the Skillport format",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "Your Name"
       },
       "category": "examples",
-      "tags": ["example", "template"],
-
-      "surfaces": ["claude-code", "claude-desktop", "claude-ai"],
+      "tags": [
+        "example",
+        "template"
+      ],
+      "surfaces": [
+        "claude-code",
+        "claude-desktop",
+        "claude-ai"
+      ],
       "skillPath": "skills/SKILL.md",
       "permissions": []
     },
@@ -48,16 +60,26 @@
         "name": "Crafty CTO"
       },
       "category": "examples",
-      "tags": ["data", "csv", "json", "analysis", "statistics"],
-
-      "surfaces": ["claude-desktop", "claude-ai"],
+      "tags": [
+        "data",
+        "csv",
+        "json",
+        "analysis",
+        "statistics"
+      ],
+      "surfaces": [
+        "claude-desktop",
+        "claude-ai"
+      ],
       "skillPath": "skills/SKILL.md",
       "permissions": []
     }
   ],
-
   "_skillport": {
     "version": "1.0.0",
-    "features": ["skill-packaging", "surface-filtering"]
+    "features": [
+      "skill-packaging",
+      "surface-filtering"
+    ]
   }
 }
