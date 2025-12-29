@@ -34,7 +34,7 @@
       "name": "example-skill",
       "source": "./plugins/example-skill",
       "description": "An example skill demonstrating the Skillport format",
-      "version": "1.0.3",
+      "version": "1.0.0",
       "author": {
         "name": "Your Name"
       },
@@ -73,12 +73,6 @@
       ],
       "skillPath": "skills/SKILL.md",
       "permissions": []
-    },
-    {
-      "name": "test-new-skill",
-      "source": "./plugins/test-new-skill",
-      "description": "A new skill",
-      "version": "1.0.0"
     }
   ],
   "_skillport": {
