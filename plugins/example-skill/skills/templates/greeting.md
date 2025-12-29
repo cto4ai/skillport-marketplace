@@ -1,0 +1,3 @@
+# Greeting Template
+
+Hello {{name}}!
