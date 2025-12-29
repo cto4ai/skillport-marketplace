@@ -73,6 +73,18 @@
       ],
       "skillPath": "skills/SKILL.md",
       "permissions": []
+    },
+    {
+      "name": "soil-data-analyzer",
+      "source": "./plugins/soil-data-analyzer",
+      "description": "Analyzes soil test data with specialized agronomic insights, nutrient assessments, pH analysis, and fertility recommendations. Extends data-analyzer with soil science-specific analytics.",
+      "version": "1.0.0",
+      "category": "agriculture",
+      "surfaces": [
+        "claude-ai",
+        "claude-desktop",
+        "claude-code"
+      ]
     }
   ],
   "_skillport": {
