@@ -27,7 +27,6 @@
         "claude-desktop",
         "claude-ai"
       ],
-      "skillPath": "skills/SKILL.md",
       "permissions": []
     },
     {
@@ -48,7 +47,6 @@
         "claude-desktop",
         "claude-ai"
       ],
-      "skillPath": "skills/SKILL.md",
       "permissions": []
     },
     {
@@ -71,7 +69,6 @@
         "claude-desktop",
         "claude-ai"
       ],
-      "skillPath": "skills/SKILL.md",
       "permissions": []
     },
     {
