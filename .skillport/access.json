@@ -1,0 +1,15 @@
+{
+  "$schema": "https://skillport.dev/schemas/access.json",
+  "version": "1.0",
+
+  "editors": [
+    { "id": "google:114339316701728183084", "label": "jack@craftycto.com" }
+  ],
+
+  "skills": {},
+
+  "defaults": {
+    "read": "*",
+    "write": "editors"
+  }
+}
