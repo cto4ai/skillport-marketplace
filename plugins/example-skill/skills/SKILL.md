@@ -1,3 +1,3 @@
 # Example Skill
 
-Test update.
+Updated with multi-file test.
