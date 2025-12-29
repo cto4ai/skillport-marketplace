@@ -1,0 +1,3 @@
+---
+name: test-new-skill
+...
