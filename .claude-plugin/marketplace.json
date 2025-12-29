@@ -73,6 +73,12 @@
       ],
       "skillPath": "skills/SKILL.md",
       "permissions": []
+    },
+    {
+      "name": "test-new-skill",
+      "source": "./plugins/test-new-skill",
+      "description": "A new skill",
+      "version": "1.0.0"
     }
   ],
   "_skillport": {
