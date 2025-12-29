@@ -34,7 +34,7 @@
       "name": "example-skill",
       "source": "./plugins/example-skill",
       "description": "An example skill demonstrating the Skillport format",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "author": {
         "name": "Your Name"
       },
