@@ -2,7 +2,7 @@
 """
 Extract versions from all installed skills.
 
-Reads plugin.json from each skill in /mnt/skills/user/ and outputs
+Reads .claude-plugin/plugin.json from each skill in /mnt/skills/user/ and outputs
 a JSON array of {name, version} objects suitable for check_updates.
 
 Output:
@@ -29,7 +29,7 @@ def get_versions() -> list:
         if not skill_dir.is_dir():
             continue
 
-        plugin_json = skill_dir / "plugin.json"
+        plugin_json = skill_dir / ".claude-plugin" / "plugin.json"
         if plugin_json.exists():
             try:
                 data = json.loads(plugin_json.read_text())
