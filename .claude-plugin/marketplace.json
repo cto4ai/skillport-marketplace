@@ -13,85 +13,37 @@
       "name": "skillport-manager",
       "source": "./plugins/skillport-manager",
       "description": "Manage Skills from Skillport marketplaces — browse, install, and update.",
-      "version": "2.0.2",
+      "version": "2.0.3",
       "author": {
         "name": "Crafty CTO"
-      },
-      "category": "core",
-      "tags": [
-        "skillport",
-        "marketplace",
-        "installer"
-      ],
-      "surfaces": [
-        "claude-desktop",
-        "claude-ai"
-      ],
-      "skillPath": "skills/SKILL.md",
-      "permissions": []
+      }
     },
     {
       "name": "example-skill",
       "source": "./plugins/example-skill",
       "description": "An example skill demonstrating the Skillport format",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "author": {
         "name": "Your Name"
-      },
-      "category": "examples",
-      "tags": [
-        "example",
-        "template"
-      ],
-      "surfaces": [
-        "claude-code",
-        "claude-desktop",
-        "claude-ai"
-      ],
-      "skillPath": "skills/SKILL.md",
-      "permissions": []
+      }
     },
     {
       "name": "data-analyzer",
       "source": "./plugins/data-analyzer",
       "description": "Analyze CSV and JSON data files with statistical summaries and visualizations",
-      "version": "1.1.2",
+      "version": "1.1.3",
       "author": {
         "name": "Crafty CTO"
-      },
-      "category": "examples",
-      "tags": [
-        "data",
-        "csv",
-        "json",
-        "analysis",
-        "statistics"
-      ],
-      "surfaces": [
-        "claude-desktop",
-        "claude-ai"
-      ],
-      "skillPath": "skills/SKILL.md",
-      "permissions": []
+      }
     },
     {
       "name": "soil-data-analyzer",
       "source": "./plugins/soil-data-analyzer",
-      "description": "Analyzes soil test data with specialized agronomic insights, nutrient assessments, pH analysis, and fertility recommendations. Extends data-analyzer with soil science-specific analytics.",
-      "version": "1.0.1",
-      "category": "agriculture",
-      "surfaces": [
-        "claude-ai",
-        "claude-desktop",
-        "claude-code"
-      ]
+      "description": "Analyzes soil test data with specialized agronomic insights, nutrient assessments, pH analysis, and fertility recommendations.",
+      "version": "1.0.2",
+      "author": {
+        "name": "Crafty CTO"
+      }
     }
-  ],
-  "_skillport": {
-    "version": "1.0.0",
-    "features": [
-      "skill-packaging",
-      "surface-filtering"
-    ]
-  }
+  ]
 }
