@@ -44,6 +44,12 @@
       "author": {
         "name": "Crafty CTO"
       }
+    },
+    {
+      "name": "test-editor-skills",
+      "source": "./plugins/test-editor-skills",
+      "description": "",
+      "version": "1.0.0"
     }
   ]
 }
