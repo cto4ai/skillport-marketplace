@@ -1,0 +1,11 @@
+{
+  "name": "test-editor-skills",
+  "version": "1.0.0",
+  "description": "Skill group: test-editor-skills",
+  "author": {
+    "name": "Jack Ivers",
+    "email": "jack@craftycto.com"
+  },
+  "license": "MIT",
+  "keywords": []
+}
