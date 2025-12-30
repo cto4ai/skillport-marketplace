@@ -50,6 +50,18 @@
       "source": "./plugins/test-editor-skills",
       "description": "",
       "version": "1.0.1"
+    },
+    {
+      "name": "word-pair-swap",
+      "source": "./plugins/word-pair-swap",
+      "description": "Swaps adjacent word pairs in text. Use when users ask to swap word pairs, swap every two words, or perform pairwise word swapping on text input.",
+      "version": "1.0.0",
+      "category": "productivity",
+      "surfaces": [
+        "claude-ai",
+        "claude-desktop",
+        "claude-code"
+      ]
     }
   ]
 }
