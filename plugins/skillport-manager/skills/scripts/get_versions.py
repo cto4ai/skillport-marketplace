@@ -5,6 +5,10 @@ Extract versions from all installed skills.
 Reads plugin.json from each skill in /mnt/skills/user/ and outputs
 a JSON array of {name, version} objects suitable for check_updates.
 
+Looks for plugin.json in two locations (for backward compatibility):
+1. .claude-plugin/plugin.json (official structure)
+2. plugin.json (legacy structure)
+
 Output:
 [
   {"name": "skillport-manager", "version": "1.0.0"},
@@ -29,7 +33,11 @@ def get_versions() -> list:
         if not skill_dir.is_dir():
             continue
 
-        plugin_json = skill_dir / "plugin.json"
+        # Try official structure first, fall back to legacy
+        plugin_json = skill_dir / ".claude-plugin" / "plugin.json"
+        if not plugin_json.exists():
+            plugin_json = skill_dir / "plugin.json"  # Legacy fallback
+
         if plugin_json.exists():
             try:
                 data = json.loads(plugin_json.read_text())

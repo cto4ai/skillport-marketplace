@@ -8,6 +8,7 @@ Usage:
 Creates <output-directory>/skill-name.skill (defaults to current directory)
 """
 
+import os
 import sys
 import zipfile
 from pathlib import Path
@@ -40,9 +41,11 @@ def package_skill(skill_path: str, output_dir: str = None) -> str:
     output_file = out_path / f"{skill_name}.skill"
 
     # Create zip archive
+    # Use os.walk to include hidden files/directories (rglob('*') skips dotfiles)
     with zipfile.ZipFile(output_file, 'w', zipfile.ZIP_DEFLATED) as zf:
-        for file_path in skill_dir.rglob('*'):
-            if file_path.is_file():
+        for root, dirs, files in os.walk(skill_dir):
+            for file in files:
+                file_path = Path(root) / file
                 # Archive path includes skill name as root folder
                 arcname = f"{skill_name}/{file_path.relative_to(skill_dir)}"
                 zf.write(file_path, arcname)
