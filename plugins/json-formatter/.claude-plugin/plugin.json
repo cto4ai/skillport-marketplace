@@ -1,0 +1,11 @@
+{
+  "name": "json-formatter",
+  "version": "1.0.0",
+  "description": "Skill: json-formatter",
+  "author": {
+    "name": "Jack Ivers",
+    "email": "jack@craftycto.com"
+  },
+  "license": "MIT",
+  "keywords": []
+}
