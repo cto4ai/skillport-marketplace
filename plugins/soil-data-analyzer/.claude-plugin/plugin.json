@@ -1,6 +1,6 @@
 {
   "name": "soil-data-analyzer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Analyzes soil test data files (CSV, JSON, Excel), providing statistical summaries, nutrient assessments, pH analysis, and agronomic recommendations.",
   "author": {
     "name": "Crafty CTO",
