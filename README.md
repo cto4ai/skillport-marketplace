@@ -74,7 +74,7 @@ Add to marketplace.json:
 **Claude.ai / Claude Desktop:**
 1. Deploy Skillport Connector (see [skillport-connector](../skillport-connector))
 2. Add connector to Claude.ai Settings > Connectors
-3. Browse and install plugins via the connector
+3. Browse and install skills via the connector
 
 ## Repository Structure
 

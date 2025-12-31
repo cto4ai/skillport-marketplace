@@ -11,18 +11,18 @@ description: >
 ## Prerequisites
 
 The Skillport Connector must be enabled. Verify by checking if these tools exist:
-- `Skillport Connector:list_plugins`
+- `Skillport Connector:list_skills`
 - `Skillport Connector:fetch_skill`
 
 If unavailable, tell the user: "Please add the Skillport Connector in Settings > Connectors, then enable it via the 'Search and tools' menu."
 
 ## List Skills
 
-Call `Skillport Connector:list_plugins` with optional `surface` ("claude-ai" or "claude-desktop") and `category` filters. Present results as a brief list.
+Call `Skillport Connector:list_skills`. Present results as a brief list showing name, description, and version.
 
 ## Get Skill Details
 
-Call `Skillport Connector:get_plugin` with `name` parameter. Present the description, version, and author.
+Call `Skillport Connector:fetch_skill` with `name` parameter. Present the description, version, and author from the response.
 
 ## Install a Skill
 
