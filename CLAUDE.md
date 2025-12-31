@@ -69,12 +69,23 @@ Uses standard Claude Code format with Skillport extensions:
     {
       "name": "my-plugin",
       "source": "./plugins/my-plugin",
-      "surfaces": ["claude-code", "claude-desktop", "claude-ai"],
-      "skillPath": "skills/SKILL.md"
+      "category": "productivity",
+      "tags": ["example", "demo"],
+      "keywords": ["sample", "starter"]
     }
   ]
 }
 ```
+
+### Official Plugin Metadata Fields
+
+These fields are part of the official Claude Code Plugin Marketplace spec:
+
+| Field | Type | Purpose |
+|-------|------|---------|
+| `category` | string | Category for organization (e.g., "productivity", "data") |
+| `tags` | array | Tags for searchability |
+| `keywords` | array | Keywords for discovery |
 
 ### Skillport Extensions
 
@@ -82,7 +93,6 @@ These fields are ignored by Claude Code but used by Skillport Connector:
 
 | Field | Purpose |
 |-------|---------|
-| `surfaces` | Target surfaces (claude-code, claude-desktop, claude-ai) |
 | `skillPath` | Path to SKILL.md within plugin directory |
 | `permissions` | Required permissions (web_search, code_execution, etc.) |
 | `_skillport` | Marketplace-level Skillport metadata |

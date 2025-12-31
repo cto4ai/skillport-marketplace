@@ -159,22 +159,6 @@ Specify where plugin components are located:
 
 Claude Code ignores these. Skillport Connector uses them.
 
-#### surfaces
-
-Array of target surfaces.
-
-```json
-"surfaces": ["claude-code", "claude-desktop", "claude-ai"]
-```
-
-| Value | Surface |
-|-------|---------|
-| `claude-code` | Claude Code CLI |
-| `claude-desktop` | Claude Desktop app |
-| `claude-ai` | Claude.ai web interface |
-
-If omitted, plugin is assumed to work on all surfaces (for applicable components).
-
 #### skillPath
 
 Path to SKILL.md within the plugin directory.
@@ -224,8 +208,6 @@ Common values:
       "category": "sales",
       "tags": ["sales", "writing", "proposals"],
       "keywords": ["pitch", "proposal", "sales"],
-      
-      "surfaces": ["claude-code", "claude-desktop", "claude-ai"],
       "skillPath": "skills/SKILL.md",
       "permissions": ["web_search"]
     },
@@ -238,11 +220,8 @@ Common values:
         "name": "Engineering"
       },
       "category": "development",
-      
       "commands": ["./commands/"],
       "agents": ["./agents/security-reviewer.md"],
-      
-      "surfaces": ["claude-code"],
       "permissions": []
     },
     {
@@ -253,15 +232,13 @@ Common values:
       },
       "description": "Apply ACME brand guidelines to content",
       "version": "1.0.0",
-      
-      "surfaces": ["claude-code", "claude-desktop", "claude-ai"],
       "skillPath": "SKILL.md"
     }
   ],
-  
+
   "_skillport": {
     "version": "1.0.0",
-    "features": ["skill-packaging", "surface-filtering"]
+    "features": ["skill-packaging"]
   }
 }
 ```
@@ -302,7 +279,6 @@ claude plugin validate .
 ### Skillport Connector Behavior
 
 - Reads standard fields plus Skillport extensions
-- Filters by `surfaces` when listing plugins
 - Uses `skillPath` to locate SKILL.md
 - Falls back to defaults when extensions are missing
 
@@ -314,14 +290,13 @@ If you have an existing custom skill library:
 
 1. Create `.claude-plugin/marketplace.json`
 2. Move skills into `plugins/<n>/skills/SKILL.md`
-3. Add plugin entries with `surfaces` extension
+3. Add plugin entries with metadata (`category`, `tags`, `keywords`)
 4. Test with Claude Code: `/plugin marketplace add ./`
 
 ### Adding Skillport to Existing Claude Code Marketplace
 
 If you have an existing Claude Code marketplace:
 
-1. Add `surfaces` to plugin entries
-2. Add `skillPath` if SKILL.md isn't at default location
-3. Optionally add `_skillport` metadata
-4. No changes needed for Claude Code — it ignores new fields
+1. Add `skillPath` if SKILL.md isn't at default location
+2. Optionally add `_skillport` metadata
+3. No changes needed for Claude Code — it ignores extension fields

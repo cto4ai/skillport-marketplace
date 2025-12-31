@@ -57,7 +57,8 @@ Add to marketplace.json:
       "source": "./plugins/my-first-skill",
       "description": "What this skill does",
       "version": "1.0.0",
-      "surfaces": ["claude-code", "claude-desktop", "claude-ai"]
+      "category": "productivity",
+      "tags": ["example"]
     }
   ]
 }
@@ -92,8 +93,7 @@ your-marketplace/
 │   └── skill-two/
 │       └── ...
 ├── docs/
-│   ├── marketplace-format.md
-│   └── creating-plugins.md
+│   └── marketplace-format.md
 └── README.md
 ```
 
@@ -134,13 +134,11 @@ These fields are **ignored by Claude Code** but used by Skillport Connector:
     {
       "name": "plugin-name",
       "source": "./plugins/plugin-name",
-      
-      "surfaces": ["claude-code", "claude-desktop", "claude-ai"],
       "skillPath": "skills/SKILL.md",
       "permissions": ["web_search"]
     }
   ],
-  
+
   "_skillport": {
     "version": "1.0.0"
   }
@@ -149,7 +147,6 @@ These fields are **ignored by Claude Code** but used by Skillport Connector:
 
 | Extension Field | Purpose |
 |-----------------|---------|
-| `surfaces` | Which Claude surfaces this plugin targets |
 | `skillPath` | Path to SKILL.md within the plugin |
 | `permissions` | Permissions required by the skill |
 | `_skillport` | Marketplace-level Skillport metadata |
@@ -169,18 +166,6 @@ A plugin can contain multiple components:
 | **MCP Servers** | configured in plugin.json | ✅ | ❌ |
 
 **Skills work everywhere.** Commands, agents, and hooks are Claude Code-specific.
-
-## Surface Values
-
-Use these values in the `surfaces` array:
-
-| Value | Surface |
-|-------|---------|
-| `claude-code` | Claude Code CLI |
-| `claude-desktop` | Claude Desktop app |
-| `claude-ai` | Claude.ai web interface |
-
-Omitting `surfaces` means the plugin works on all surfaces (for its applicable components).
 
 ## Creating Effective Skills
 
