@@ -268,7 +268,7 @@ This template includes an example plugin at `plugins/example-skill/`. Use it as 
 | Project | Purpose |
 |---------|---------|
 | [skillport-connector](../skillport-connector) | MCP Connector for Claude.ai/Desktop |
-| [skillport-template](.) | This template |
+| [skillport-marketplace-template](.) | This template |
 | Your marketplace | Your instance created from this template |
 
 ## License

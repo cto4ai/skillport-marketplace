@@ -16,7 +16,7 @@ This project is part of a two-repo workspace:
 
 | Repo | Purpose |
 |------|---------|
-| **skillport-template** (this repo) | GitHub template for creating marketplaces |
+| **skillport-marketplace-template** (this repo) | GitHub template for creating marketplaces |
 | **skillport-connector** | MCP connector deployed on Cloudflare Workers |
 
 The connector is at `../skillport-connector/` in this workspace.
