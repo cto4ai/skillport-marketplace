@@ -62,6 +62,23 @@
         "claude-desktop",
         "claude-code"
       ]
+    },
+    {
+      "name": "csv-analyzer",
+      "source": "./plugins/csv-analyzer",
+      "description": "Analyze CSV files and generate insights, statistics, and visualizations.\n",
+      "version": "1.0.0",
+      "category": "data",
+      "tags": [
+        "csv",
+        "data-analysis"
+      ],
+      "keywords": [
+        "spreadsheet",
+        "statistics",
+        "visualization",
+        "reports"
+      ]
     }
   ]
 }
