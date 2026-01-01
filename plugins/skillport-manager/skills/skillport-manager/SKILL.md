@@ -41,7 +41,7 @@ Response includes:
 Run the `command` from the response. It will look something like:
 
 ```bash
-bash <(curl -sf https://skillport-connector.jack-ivers.workers.dev/install.sh) <token> --package
+curl -sf https://skillport-connector.jack-ivers.workers.dev/install.sh | bash -s -- <token> --package
 ```
 
 ### Step 3: Present Result
