@@ -30,7 +30,14 @@ This is an example skill that demonstrates the Skillport format for creating ski
 ## Resources
 
 This skill has access to:
-- No external resources (example only)
+- `scripts/hello.sh` - A simple Hello World bash script
+
+## Scripts
+
+To run the hello script:
+```bash
+bash scripts/hello.sh
+```
 
 ## Notes
 
