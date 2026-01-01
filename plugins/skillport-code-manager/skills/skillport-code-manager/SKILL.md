@@ -53,6 +53,37 @@ Note: No `--package` flag - writes directly to `~/.claude/skills/`.
 
 Tell user: "Installed <skill> v<version> to ~/.claude/skills/. **Start a new Claude Code conversation to use this skill.**"
 
+## Edit a Skill
+
+Requires editor access to the skill.
+
+### Step 1: Get Edit Token
+
+Call `mcp__skillport__fetch_skill_for_editing` with the skill name.
+
+Response includes:
+- `edit_token`: Short-lived token (5 min TTL)
+- `skill`: Skill name
+- `command`: Curl command to download files
+
+### Step 2: Download Files
+
+Run the `command` from the response:
+
+```bash
+curl -sf https://skillport-connector.jack-ivers.workers.dev/edit.sh | bash -s -- <token>
+```
+
+Files are downloaded to `/tmp/skillport-edit/<skill>/`. The output shows `SKILL_DIR=<path>`.
+
+### Step 3: Edit and Save
+
+1. Read files from the skill directory
+2. Make changes as needed
+3. Call `mcp__skillport__save_skill` with updated files:
+   - `skill`: Skill name
+   - `files`: Array of `{path, content}` objects for changed files
+
 ## Check for Updates
 
 1. **List installed skills**:
