@@ -88,7 +88,7 @@
       "name": "meeting-digest",
       "source": "./plugins/meeting-digest",
       "description": "Generate concise, actionable summaries from Fireflies meeting transcripts. Creates weekly digests, extracts action items, and highlights key decisions.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "category": "productivity",
       "tags": [
         "meetings",
