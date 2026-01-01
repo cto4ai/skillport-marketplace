@@ -5,6 +5,8 @@ description: Generate concise, actionable summaries from Fireflies meeting trans
 
 # Meeting Digest Skill
 
+> **Cache Test: PINEAPPLE-2026** ← If you see this, the update worked!
+
 Generate concise, actionable summaries from Fireflies meeting transcripts.
 
 ## Prerequisites
