@@ -1,0 +1,11 @@
+{
+  "name": "skillport-code-manager",
+  "version": "1.0.0",
+  "description": "Manage Skills from Skillport marketplaces for Claude Code — browse, install, and update",
+  "author": {
+    "name": "Crafty CTO",
+    "email": "jack@craftycto.com"
+  },
+  "license": "MIT",
+  "keywords": ["skillport", "marketplace", "skills", "installer", "claude-code"]
+}

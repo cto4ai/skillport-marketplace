@@ -2,8 +2,7 @@
 name: skillport-manager
 description: >
   Manages Skills from Skillport marketplaces — browse available skills, install them
-  with one click, and check for updates. Activates when the user asks to list, browse,
-  install, or update skills, or mentions "Skillport" in context of skills or plugins.
+  efficiently, and check for updates. For Claude.ai and Claude Desktop.
 ---
 
 # Skillport Manager
@@ -12,9 +11,11 @@ description: >
 
 The Skillport Connector must be enabled. Verify by checking if these tools exist:
 - `Skillport Connector:list_skills`
-- `Skillport Connector:fetch_skill`
+- `Skillport Connector:install_skill`
 
 If unavailable, tell the user: "Please add the Skillport Connector in Settings > Connectors, then enable it via the 'Search and tools' menu."
+
+**Network Access Required:** Users must add `skillport-connector.jack-ivers.workers.dev` to their allowed domains in Settings > Code execution and file creation > Additional allowed domains.
 
 ## List Skills
 
@@ -22,27 +23,32 @@ Call `Skillport Connector:list_skills`. Present results as a brief list showing 
 
 ## Get Skill Details
 
-Call `Skillport Connector:fetch_skill` with `name` parameter. Present the description, version, and author from the response.
+Call `Skillport Connector:fetch_skill_details` with `name` parameter. This returns the SKILL.md content which describes capabilities, usage, and examples.
 
 ## Install a Skill
 
-1. **Fetch**: Call `Skillport Connector:fetch_skill` with the skill name.
-   The response contains `plugin` (with name, version) and `files` (array of `{path, content}` objects).
+### Step 1: Get Install Token
 
-2. **Write files directly**: Create the skill directory and write each file:
-   - Create directory: `<output-directory>/<skill-name>/`
-   - For each file in the `files` array, write `content` to `<output-directory>/<skill-name>/<path>`
-   - Create any necessary subdirectories (e.g., `scripts/`, `references/`)
-   - Handle binary files: if a file object has `encoding: "base64"`, decode before writing
+Call `Skillport Connector:install_skill` with the skill name.
 
-3. **Package**: Create the .skill zip file:
-   ```bash
-   python scripts/package_skill.py <skill-directory> [output-directory]
-   ```
-   Returns the path to the created .skill file. Output directory is optional (defaults to current directory).
+Response includes:
+- `install_token`: Short-lived token (5 min TTL)
+- `skill`: Skill name
+- `version`: Skill version
 
-4. **Present**: Call `present_files` with the .skill path.
-   Tell user: "Click 'Copy to your skills' to install. **Start a new conversation to use the newly installed skill.**"
+### Step 2: Run Install Script
+
+Run the `command` from the response. It will look something like:
+
+```bash
+bash <(curl -sf https://skillport-connector.jack-ivers.workers.dev/install.sh) <token> --package
+```
+
+### Step 3: Present Result
+
+The script outputs `SKILL_FILE=<path>` on the last line. Extract that path and call `present_files` with the .skill file.
+
+Tell user: "Click 'Copy to your skills' to install. **Start a new conversation to use the skill.**"
 
 ## Check for Updates
 
@@ -50,8 +56,8 @@ Call `Skillport Connector:fetch_skill` with `name` parameter. Present the descri
    ```bash
    python scripts/get_versions.py
    ```
-   Run from this skill's directory. Returns JSON array of `{name, version}` objects.
+   Returns JSON array of `{name, version}` objects.
 
 2. **Check marketplace**: Call `Skillport Connector:check_updates` with the JSON output.
 
-3. **Report**: Show which skills have updates available. Offer to install updates using the Install workflow above.
+3. **Report**: Show which skills have updates. Offer to install updates.
