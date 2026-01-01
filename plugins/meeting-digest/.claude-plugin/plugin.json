@@ -1,0 +1,11 @@
+{
+  "name": "meeting-digest",
+  "version": "1.0.0",
+  "description": "Skill group: meeting-digest",
+  "author": {
+    "name": "Jack Ivers",
+    "email": "jack@craftycto.com"
+  },
+  "license": "MIT",
+  "keywords": []
+}
