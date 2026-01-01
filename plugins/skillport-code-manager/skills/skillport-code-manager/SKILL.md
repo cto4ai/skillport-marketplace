@@ -43,7 +43,7 @@ Response includes:
 Run the `command` from the response. It will look something like:
 
 ```bash
-bash <(curl -sf https://skillport-connector.jack-ivers.workers.dev/install.sh) <token>
+curl -sf https://skillport-connector.jack-ivers.workers.dev/install.sh | bash -s -- <token>
 ```
 
 Note: No `--package` flag - writes directly to `~/.claude/skills/`.
