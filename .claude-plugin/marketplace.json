@@ -12,8 +12,8 @@
     {
       "name": "skillport-manager",
       "source": "./plugins/skillport-manager",
-      "description": "Manage Skills from Skillport marketplaces for Claude.ai and Claude Desktop — browse, install, and update.",
-      "version": "3.0.0",
+      "description": "Install skills from Skillport marketplaces for Claude.ai and Claude Desktop.",
+      "version": "3.0.1",
       "author": {
         "name": "Crafty CTO"
       }
@@ -21,8 +21,8 @@
     {
       "name": "skillport-code-manager",
       "source": "./plugins/skillport-code-manager",
-      "description": "Manage Skills from Skillport marketplaces for Claude Code — browse, install, and update.",
-      "version": "1.0.0",
+      "description": "Install skills from Skillport marketplaces for Claude Code.",
+      "version": "1.0.1",
       "author": {
         "name": "Crafty CTO"
       }

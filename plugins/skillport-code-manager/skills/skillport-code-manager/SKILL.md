@@ -1,8 +1,9 @@
 ---
 name: skillport-code-manager
 description: >
-  Manages Skills from Skillport marketplaces — browse available skills, install them
-  efficiently, and check for updates. For Claude Code.
+  Install skills from Skillport marketplaces. Activates when the user asks to install,
+  list, browse, update, or create skills, or mentions "Skillport" in context of skills
+  or plugins. For Claude Code.
 ---
 
 # Skillport Code Manager
