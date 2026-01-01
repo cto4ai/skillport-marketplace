@@ -64,7 +64,7 @@
       "name": "word-pair-swap",
       "source": "./plugins/word-pair-swap",
       "description": "Swaps adjacent word pairs in text. Use when users ask to swap word pairs, swap every two words, or perform pairwise word swapping on text input.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "productivity"
     },
     {
