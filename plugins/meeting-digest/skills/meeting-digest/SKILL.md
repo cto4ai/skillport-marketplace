@@ -1,25 +1,11 @@
+---
+name: meeting-digest
+description: Generate concise, actionable summaries from Fireflies meeting transcripts. Use when users ask to summarize meetings, create meeting digests, extract action items, generate weekly/daily meeting roundups, find decisions made in meetings, or create briefing documents from recent calls. Triggers on phrases like "summarize my meetings", "what happened in my calls", "create a meeting digest", "extract action items", or "brief me on recent meetings".
+---
+
 # Meeting Digest Skill
 
 Generate concise, actionable summaries from Fireflies meeting transcripts.
-
-## When to Use
-
-Activate this skill when users ask to:
-- Summarize a meeting or set of meetings
-- Create meeting notes or digests
-- Extract action items from meetings
-- Generate a weekly/daily meeting roundup
-- Find decisions made in meetings
-- Create a briefing document from recent calls
-
-## Trigger Phrases
-
-- "Summarize my meetings"
-- "What happened in my calls this week?"
-- "Create a meeting digest"
-- "Extract action items from [meeting]"
-- "What decisions were made in [meeting]?"
-- "Brief me on recent meetings"
 
 ## Prerequisites
 
