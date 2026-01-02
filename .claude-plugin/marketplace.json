@@ -19,24 +19,6 @@
       }
     },
     {
-      "name": "skillport-manager",
-      "source": "./plugins/skillport-manager",
-      "description": "Install skills from Skillport marketplaces for Claude.ai and Claude Desktop.",
-      "version": "3.0.1",
-      "author": {
-        "name": "Skillport"
-      }
-    },
-    {
-      "name": "skillport-code-manager",
-      "source": "./plugins/skillport-code-manager",
-      "description": "Install skills from Skillport marketplaces for Claude Code.",
-      "version": "1.0.1",
-      "author": {
-        "name": "Skillport"
-      }
-    },
-    {
       "name": "data-analyzer",
       "source": "./plugins/data-analyzer",
       "description": "Analyze CSV and JSON data files with statistical summaries and visualizations",
@@ -69,6 +51,15 @@
         "decisions",
         "weekly summary"
       ]
+    },
+    {
+      "name": "skillport-repo-utils",
+      "source": "./plugins/skillport-repo-utils",
+      "description": "Local utilities for managing skills in a Skillport marketplace repo",
+      "version": "1.0.0",
+      "author": {
+        "name": "Skillport"
+      }
     }
   ]
 }
