@@ -1,0 +1,11 @@
+{
+  "name": "catchup",
+  "version": "1.0.0",
+  "description": "Skill: catchup",
+  "author": {
+    "name": "Jack Ivers",
+    "email": "jack@craftycto.com"
+  },
+  "license": "MIT",
+  "keywords": []
+}
