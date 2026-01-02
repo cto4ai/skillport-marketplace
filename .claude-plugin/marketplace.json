@@ -105,6 +105,25 @@
         "decisions",
         "weekly summary"
       ]
+    },
+    {
+      "name": "git-commit-generator",
+      "source": "./plugins/git-commit-generator",
+      "description": "Generate well-structured conventional commit messages by analyzing git diffs",
+      "version": "1.0.0",
+      "category": "development",
+      "tags": [
+        "git",
+        "productivity",
+        "cli"
+      ],
+      "keywords": [
+        "git",
+        "commit",
+        "conventional commits",
+        "version control",
+        "developer tools"
+      ]
     }
   ]
 }
