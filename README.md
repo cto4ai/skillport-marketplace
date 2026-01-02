@@ -1,14 +1,14 @@
-# Skillport Template
+# Skillport Marketplace
 
-A GitHub template for creating Claude Code Plugin Marketplaces that also work with Claude.ai and Claude Desktop via Skillport Connector.
+A GitHub template for creating skill marketplaces for Claude Code, Claude.ai, and Claude Desktop.
 
 ## What is Skillport?
 
-Skillport enables organizations to share Skills and plugins across all Claude surfaces:
+Skillport enables organizations to share Skills across all Claude surfaces:
 
 | Surface | How It Works |
 |---------|--------------|
-| **Claude Code** | Native — uses Plugin Marketplace directly |
+| **Claude Code** | Native skill installation |
 | **Claude Desktop** | Via Skillport Connector (MCP) |
 | **Claude.ai** | Via Skillport Connector (MCP) |
 
@@ -26,25 +26,41 @@ Edit `.claude-plugin/marketplace.json`:
 
 ```json
 {
-  "name": "your-org-skillport",
+  "name": "your-org-marketplace",
   "owner": {
     "name": "Your Organization",
-    "email": "plugins@yourorg.com"
+    "email": "skills@yourorg.com"
   },
   "plugins": []
 }
 ```
 
-### 3. Add Your First Plugin
+### 3. Set Up Access Control
 
-Create a plugin directory:
+Edit `.skillport/access.json` to control who can edit skills via Skillport Connector:
+
+```json
+{
+  "editors": [
+    { "id": "google:YOUR_GOOGLE_ID", "label": "your-email@example.com" }
+  ]
+}
+```
+
+**To get your Google ID:** Use the `whoami` tool in Skillport Connector, or check the connector logs after authenticating.
+
+### 4. Add Your First Skill
+
+Create a skill directory:
 
 ```
 plugins/
-└── my-first-skill/
-    ├── plugin.json
+└── my-skill/
+    ├── .claude-plugin/
+    │   └── plugin.json
     └── skills/
-        └── SKILL.md
+        └── my-skill/
+            └── SKILL.md
 ```
 
 Add to marketplace.json:
@@ -53,28 +69,29 @@ Add to marketplace.json:
 {
   "plugins": [
     {
-      "name": "my-first-skill",
-      "source": "./plugins/my-first-skill",
+      "name": "my-skill",
+      "source": "./plugins/my-skill",
       "description": "What this skill does",
-      "version": "1.0.0",
-      "category": "productivity",
-      "tags": ["example"]
+      "version": "1.0.0"
     }
   ]
 }
 ```
 
-### 4. Use Your Marketplace
+### 5. Use Your Marketplace
 
-**Claude Code (native):**
+**Claude Code:**
 ```bash
-/plugin marketplace add your-org/your-marketplace
-/plugin install my-first-skill@your-marketplace
+# Add marketplace
+claude mcp add-json skillport-connector '{"type":"url","url":"https://your-connector.workers.dev/sse"}'
+
+# Install skills
+# Use list_skills and install_skill tools via the connector
 ```
 
 **Claude.ai / Claude Desktop:**
-1. Deploy Skillport Connector (see [skillport-connector](../skillport-connector))
-2. Add connector to Claude.ai Settings > Connectors
+1. Deploy Skillport Connector (see [skillport-connector](https://github.com/cto4ai/skillport-connector))
+2. Add connector in Settings > Connectors
 3. Browse and install skills via the connector
 
 ## Repository Structure
@@ -82,90 +99,23 @@ Add to marketplace.json:
 ```
 your-marketplace/
 ├── .claude-plugin/
-│   └── marketplace.json    # Plugin manifest (required)
+│   └── marketplace.json    # Skill manifest
+├── .skillport/
+│   └── access.json         # Editor access control
 ├── plugins/
-│   ├── skill-one/
-│   │   ├── plugin.json     # Plugin metadata
-│   │   ├── skills/
-│   │   │   └── SKILL.md    # For Claude.ai/Desktop
-│   │   ├── commands/       # For Claude Code (optional)
-│   │   └── agents/         # For Claude Code (optional)
-│   └── skill-two/
+│   ├── my-skill/
+│   │   ├── .claude-plugin/
+│   │   │   └── plugin.json
+│   │   └── skills/
+│   │       └── my-skill/
+│   │           ├── SKILL.md
+│   │           ├── scripts/     # Optional helper scripts
+│   │           ├── templates/   # Optional templates
+│   │           └── references/  # Optional reference docs
+│   └── another-skill/
 │       └── ...
-├── docs/
-│   └── marketplace-format.md
 └── README.md
 ```
-
-## Marketplace Format
-
-This template uses the **standard Claude Code Plugin Marketplace format** with Skillport extensions.
-
-### Standard Fields (Claude Code)
-
-These are defined by Anthropic and work natively with Claude Code:
-
-```json
-{
-  "name": "marketplace-name",
-  "owner": { "name": "...", "email": "..." },
-  "metadata": { "description": "...", "version": "..." },
-  "plugins": [
-    {
-      "name": "plugin-name",
-      "source": "./plugins/plugin-name",
-      "description": "...",
-      "version": "1.0.0",
-      "author": { "name": "..." },
-      "commands": "./commands/",
-      "agents": "./agents/"
-    }
-  ]
-}
-```
-
-### Skillport Extensions
-
-These fields are **ignored by Claude Code** but used by Skillport Connector:
-
-```json
-{
-  "plugins": [
-    {
-      "name": "plugin-name",
-      "source": "./plugins/plugin-name",
-      "skillPath": "skills/SKILL.md",
-      "permissions": ["web_search"]
-    }
-  ],
-
-  "_skillport": {
-    "version": "1.0.0"
-  }
-}
-```
-
-| Extension Field | Purpose |
-|-----------------|---------|
-| `skillPath` | Path to SKILL.md within the plugin |
-| `permissions` | Permissions required by the skill |
-| `_skillport` | Marketplace-level Skillport metadata |
-
-See [docs/marketplace-format.md](docs/marketplace-format.md) for complete schema.
-
-## Plugin Components
-
-A plugin can contain multiple components:
-
-| Component | File/Directory | Claude Code | Claude.ai/Desktop |
-|-----------|----------------|:-----------:|:-----------------:|
-| **Skills** | `skills/SKILL.md` | ✅ | ✅ (via Skillport) |
-| **Commands** | `commands/*.md` | ✅ | ❌ |
-| **Agents** | `agents/*.md` | ✅ | ❌ |
-| **Hooks** | `hooks/` | ✅ | ❌ |
-| **MCP Servers** | configured in plugin.json | ✅ | ❌ |
-
-**Skills work everywhere.** Commands, agents, and hooks are Claude Code-specific.
 
 ## Creating Effective Skills
 
@@ -194,82 +144,33 @@ description: Brief description that helps Claude know when to activate this skil
 
 **User:** "Example request"
 **Action:** What Claude should do
-
-## Resources
-
-- List of files/tools this skill uses
-
-## Notes
-
-- Additional context
 ```
 
 ### Best Practices
 
-1. **Clear triggers** — The description and "When to Use" sections determine when Claude activates the skill
+1. **Clear triggers** — The description determines when Claude activates the skill
 2. **Step-by-step instructions** — Be explicit about what to do
 3. **Examples** — Show expected interactions
 4. **Focused scope** — One skill, one purpose
 
-See [docs/creating-plugins.md](docs/creating-plugins.md) for detailed guide.
+## Example Skills
 
-## Team Distribution
+This template includes example skills in `plugins/`:
 
-### Automatic Installation
+- `example-skill` — Basic skill structure demo
+- `data-analyzer` — Data processing patterns
+- `meeting-digest` — External service integration
 
-Add to `.claude/settings.json` in project repos:
+## Development Branch
 
-```json
-{
-  "extraKnownMarketplaces": {
-    "your-org-skillport": {
-      "source": {
-        "source": "github",
-        "repo": "your-org/your-marketplace"
-      }
-    }
-  }
-}
-```
-
-Team members who trust the repo folder automatically get the marketplace.
-
-### Enterprise Controls
-
-Admins can restrict marketplace sources via managed settings. See [Claude Code docs](https://code.claude.com/docs/en/plugin-marketplaces) for details.
-
-## Relationship to Skillport Connector
-
-```
-┌─────────────────────────────────────┐
-│      This Repository                │
-│      (Plugin Marketplace)           │
-│                                     │
-│  Claude Code reads directly ───────────────► Claude Code
-│                                     │
-│  Skillport Connector reads ─────────────────► Claude.ai
-│  and serves via MCP                 │         Claude Desktop
-└─────────────────────────────────────┘
-```
-
-The marketplace is the **source of truth**. Claude Code uses it natively. Skillport Connector reads it and serves Skills to Claude.ai/Desktop.
-
-## Example Plugins
-
-This template includes an example plugin at `plugins/example-skill/`. Use it as a starting point for your own plugins.
-
-## Documentation
-
-- [Marketplace Format](docs/marketplace-format.md) — Complete schema reference
-- [Creating Plugins](docs/creating-plugins.md) — Step-by-step plugin creation guide
+The `development` branch contains additional examples and development artifacts. Check it out for more complex skill patterns.
 
 ## Related Projects
 
 | Project | Purpose |
 |---------|---------|
-| [skillport-connector](../skillport-connector) | MCP Connector for Claude.ai/Desktop |
-| [skillport-marketplace-template](.) | This template |
-| Your marketplace | Your instance created from this template |
+| [skillport-connector](https://github.com/cto4ai/skillport-connector) | MCP Connector for Claude.ai/Desktop |
+| This template | Create your own marketplace |
 
 ## License
 

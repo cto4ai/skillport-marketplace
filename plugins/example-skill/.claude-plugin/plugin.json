@@ -1,0 +1,10 @@
+{
+  "name": "example-skill",
+  "version": "1.0.0",
+  "description": "An example skill demonstrating the Skillport format",
+  "author": {
+    "name": "Skillport"
+  },
+  "license": "MIT",
+  "keywords": []
+}

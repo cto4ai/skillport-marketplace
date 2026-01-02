@@ -3,7 +3,7 @@
   "version": "1.0",
 
   "editors": [
-    { "id": "google:114339316701728183084", "label": "jack@craftycto.com" }
+    { "id": "google:YOUR_GOOGLE_ID", "label": "your-email@example.com (use whoami tool to get your ID)" }
   ],
 
   "skills": {},
