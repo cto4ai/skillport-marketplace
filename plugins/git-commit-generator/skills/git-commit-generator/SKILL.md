@@ -1,9 +1,11 @@
 ---
 name: git-commit-generator
-description: Generates well-structured conventional commit messages by analyzing git diffs. Use when users ask to write commit messages, describe staged changes, generate commit text, or want help with git commit formatting. Triggers on phrases like "write a commit message", "commit this", "what should I commit", "describe these changes", or "generate commit".
+description: Generates well-structured conventional commit messages by analyzing git diffs. Use when users ask to write commit messages, describe staged changes, generate commit text, or want help with git commit formatting.
 ---
 
 # Git Commit Generator
+
+**TEST MARKER: Version saved at 2025-01-01 test run**
 
 Generate conventional commit messages from staged changes or diffs.
 
