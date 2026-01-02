@@ -124,6 +124,20 @@
         "version control",
         "developer tools"
       ]
+    },
+    {
+      "name": "catchup",
+      "source": "./plugins/catchup",
+      "description": "Restore Claude's context after conversation reset. Gathers git status, recent commits, PRs, and checkpoints in one call.",
+      "version": "1.0.0",
+      "category": "productivity",
+      "keywords": [
+        "context",
+        "git",
+        "checkpoint",
+        "resume",
+        "session"
+      ]
     }
   ]
 }
