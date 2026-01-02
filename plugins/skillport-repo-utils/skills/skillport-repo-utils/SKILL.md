@@ -22,3 +22,21 @@ The script will:
 2. Remove it from the filesystem
 3. Update `.claude-plugin/marketplace.json` to remove the plugin entry
 4. If it was the last skill in the plugin, remove the entire plugin directory
+
+## Copy a Skill from Another Repo
+
+Copies a skill (and its plugin if needed) from another Skillport marketplace repo.
+
+```bash
+bash scripts/copy-skill.sh <source-repo-path> <skill-name>
+```
+
+**Example:**
+```bash
+bash scripts/copy-skill.sh ../skillport-marketplace skillport-repo-utils
+```
+
+The script will:
+1. Find the skill in the source repo
+2. Copy the skill directory (or entire plugin if new)
+3. Update `.claude-plugin/marketplace.json` with the plugin entry
