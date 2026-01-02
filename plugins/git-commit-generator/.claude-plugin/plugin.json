@@ -1,0 +1,11 @@
+{
+  "name": "git-commit-generator",
+  "version": "1.0.0",
+  "description": "Skill: git-commit-generator",
+  "author": {
+    "name": "Jack Ivers",
+    "email": "jack@craftycto.com"
+  },
+  "license": "MIT",
+  "keywords": []
+}
