@@ -3,7 +3,8 @@
   "version": "1.0.1",
   "description": "Local utilities for managing skills in a Skillport marketplace repo",
   "author": {
-    "name": "Skillport"
+    "name": "Skillport Team",
+    "email": "info@craftycto.com"
   },
   "license": "MIT"
 }
