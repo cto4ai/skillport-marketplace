@@ -9,12 +9,22 @@ description: >
 
 Utilities for local skill management. These scripts work directly on the filesystem - no MCP connector required.
 
+## Prerequisites
+
+These scripts are installed with this skill at:
+```
+~/.claude/skills/skillport-repo-utils/scripts/
+```
+
+**Important:** Run these scripts from within your Skillport marketplace repo directory (must contain `.claude-plugin/marketplace.json`).
+
 ## Delete a Skill
 
 Removes a skill and updates marketplace.json. If the skill is the last one in its plugin group, the entire plugin directory is removed.
 
 ```bash
-bash scripts/delete-skill.sh <skill-name>
+cd /path/to/your-marketplace
+bash ~/.claude/skills/skillport-repo-utils/scripts/delete-skill.sh <skill-name>
 ```
 
 The script will:
@@ -28,12 +38,14 @@ The script will:
 Copies a skill (and its plugin if needed) from another Skillport marketplace repo.
 
 ```bash
-bash scripts/copy-skill.sh <source-repo-path> <skill-name>
+cd /path/to/target-marketplace
+bash ~/.claude/skills/skillport-repo-utils/scripts/copy-skill.sh <source-repo-path> <skill-name>
 ```
 
 **Example:**
 ```bash
-bash scripts/copy-skill.sh ../skillport-marketplace skillport-repo-utils
+cd ~/Projects/my-marketplace
+bash ~/.claude/skills/skillport-repo-utils/scripts/copy-skill.sh ../other-marketplace my-skill
 ```
 
 The script will:

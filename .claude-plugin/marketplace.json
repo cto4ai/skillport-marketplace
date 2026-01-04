@@ -60,6 +60,37 @@
       "author": {
         "name": "Skillport"
       }
+    },
+    {
+      "name": "skillport",
+      "source": "./plugins/skillport",
+      "description": "Skillport marketplace API instructions. Teaches Claude how to use the Skillport REST API.",
+      "version": "1.2.3",
+      "category": "development",
+      "keywords": [
+        "skillport",
+        "marketplace",
+        "api",
+        "bootstrap"
+      ]
+    },
+    {
+      "name": "skillport-repo-utils",
+      "source": "./plugins/skillport-repo-utils",
+      "description": "Local utilities for managing skills in a Skillport marketplace repo",
+      "version": "1.0.0",
+      "author": {
+        "name": "Skillport"
+      }
+    },
+    {
+      "name": "skillport-repo-utils",
+      "source": "./plugins/skillport-repo-utils",
+      "description": "Local utilities for managing skills in a Skillport marketplace repo",
+      "version": "1.0.1",
+      "author": {
+        "name": "Skillport"
+      }
     }
   ]
 }
