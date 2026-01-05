@@ -83,15 +83,21 @@ else
 
     # Get plugin info from source marketplace.json
     if command -v jq &> /dev/null; then
-        PLUGIN_ENTRY=$(jq --arg name "$SOURCE_PLUGIN_NAME" '.plugins[] | select(.name == $name)' "$SOURCE_REPO/.claude-plugin/marketplace.json")
-
-        if [ -n "$PLUGIN_ENTRY" ]; then
-            # Add entry to target marketplace
-            jq --argjson entry "$PLUGIN_ENTRY" '.plugins += [$entry]' "$MARKETPLACE_FILE" > "$MARKETPLACE_FILE.tmp"
-            mv "$MARKETPLACE_FILE.tmp" "$MARKETPLACE_FILE"
-            echo "Added '$SOURCE_PLUGIN_NAME' to marketplace.json"
+        # Check if plugin already exists in target marketplace.json
+        EXISTING=$(jq --arg name "$SOURCE_PLUGIN_NAME" '.plugins[] | select(.name == $name)' "$MARKETPLACE_FILE")
+        if [ -n "$EXISTING" ]; then
+            echo "Plugin '$SOURCE_PLUGIN_NAME' already in marketplace.json, skipping..."
         else
-            echo "Warning: Plugin not found in source marketplace.json. Please add manually."
+            PLUGIN_ENTRY=$(jq --arg name "$SOURCE_PLUGIN_NAME" '.plugins[] | select(.name == $name)' "$SOURCE_REPO/.claude-plugin/marketplace.json")
+
+            if [ -n "$PLUGIN_ENTRY" ]; then
+                # Add entry to target marketplace
+                jq --argjson entry "$PLUGIN_ENTRY" '.plugins += [$entry]' "$MARKETPLACE_FILE" > "$MARKETPLACE_FILE.tmp"
+                mv "$MARKETPLACE_FILE.tmp" "$MARKETPLACE_FILE"
+                echo "Added '$SOURCE_PLUGIN_NAME' to marketplace.json"
+            else
+                echo "Warning: Plugin not found in source marketplace.json. Please add manually."
+            fi
         fi
     else
         echo "Warning: jq not installed. Please manually add '$SOURCE_PLUGIN_NAME' to marketplace.json"

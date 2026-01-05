@@ -1,11 +1,11 @@
 {
-  "name": "your-marketplace",
+  "name": "skillport-marketplace",
   "owner": {
-    "name": "Your Organization",
-    "email": "plugins@example.com"
+    "name": "Skillport Team",
+    "email": "info@craftycto.com"
   },
   "metadata": {
-    "description": "Organization plugin marketplace for Claude",
+    "description": "Skillport marketplace template for Claude",
     "version": "1.0.0"
   },
   "plugins": [
@@ -15,7 +15,7 @@
       "description": "An example skill demonstrating the Skillport format. Use this as a starting point for creating your own skills.",
       "version": "1.0.0",
       "author": {
-        "name": "Your Organization"
+        "name": "Skillport Team"
       }
     },
     {
@@ -24,7 +24,7 @@
       "description": "Analyze CSV and JSON data files with statistical summaries and visualizations",
       "version": "1.1.3",
       "author": {
-        "name": "Your Organization"
+        "name": "Skillport Team"
       }
     },
     {
@@ -33,7 +33,7 @@
       "description": "Generate concise, actionable summaries from Fireflies meeting transcripts. Creates weekly digests, extracts action items, and highlights key decisions.",
       "version": "1.0.1",
       "author": {
-        "name": "Your Organization"
+        "name": "Skillport Team"
       },
       "category": "productivity",
       "tags": [
@@ -53,19 +53,13 @@
       ]
     },
     {
-      "name": "skillport-repo-utils",
-      "source": "./plugins/skillport-repo-utils",
-      "description": "Local utilities for managing skills in a Skillport marketplace repo",
-      "version": "1.0.0",
-      "author": {
-        "name": "Skillport"
-      }
-    },
-    {
       "name": "skillport",
       "source": "./plugins/skillport",
       "description": "Skillport marketplace API instructions. Teaches Claude how to use the Skillport REST API.",
       "version": "1.2.3",
+      "author": {
+        "name": "Skillport Team"
+      },
       "category": "development",
       "keywords": [
         "skillport",
@@ -78,18 +72,9 @@
       "name": "skillport-repo-utils",
       "source": "./plugins/skillport-repo-utils",
       "description": "Local utilities for managing skills in a Skillport marketplace repo",
-      "version": "1.0.0",
-      "author": {
-        "name": "Skillport"
-      }
-    },
-    {
-      "name": "skillport-repo-utils",
-      "source": "./plugins/skillport-repo-utils",
-      "description": "Local utilities for managing skills in a Skillport marketplace repo",
       "version": "1.0.1",
       "author": {
-        "name": "Skillport"
+        "name": "Skillport Team"
       }
     }
   ]
