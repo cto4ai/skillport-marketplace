@@ -18,6 +18,53 @@ These scripts are installed with this skill at:
 
 **Important:** Run these scripts from within your Skillport marketplace repo directory (must contain `.claude-plugin/marketplace.json`).
 
+## Check Repository Consistency
+
+Validates a marketplace repo for common issues:
+- Duplicate plugin entries in marketplace.json
+- Version mismatches between plugin.json and marketplace.json
+- Missing required files (plugin.json, SKILL.md)
+- Invalid SKILL.md frontmatter
+- Missing plugin directories (listed in marketplace.json but don't exist)
+
+```bash
+cd /path/to/your-marketplace
+bash ~/.claude/skills/skillport-repo-utils/scripts/check-repo.sh
+```
+
+**Exit codes:**
+- `0` - All checks passed (or only warnings)
+- `1` - Errors found
+
+**Example output:**
+```
+Checking: /Users/me/my-marketplace
+===========================================
+
+## Marketplace Structure
+
+[OK]    Marketplace name: my-marketplace
+
+## Duplicate Check
+
+[OK]    No duplicate plugin entries
+
+## Plugin Validation
+
+--- my-plugin ---
+[OK]    Version consistent: 1.0.0
+[OK]    Skill 'my-skill': valid
+
+## Unpublished Plugins
+
+[OK]    All plugins are published
+
+===========================================
+Summary: 0 error(s), 0 warning(s)
+
+All checks passed!
+```
+
 ## Delete a Skill
 
 Removes a skill and updates marketplace.json. If the skill is the last one in its plugin group, the entire plugin directory is removed.

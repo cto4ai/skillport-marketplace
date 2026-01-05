@@ -74,7 +74,14 @@ The response includes a `command` field. Execute it to download the skill packag
 Find the `SKILL_FILE=` path in the output and call `present_files` with it. Tell the user to click "Copy to your skills" button.
 
 *In Claude Code:*
-The download command extracts files to a temp directory. Use the `Write` tool to copy each file to `~/.claude/skills/{skill-name}/`, preserving the directory structure.
+The download creates a `.skill` package at `/tmp/{skill-name}.skill`. Extract and install:
+```bash
+rm -rf ~/.claude/skills/{skill-name}
+unzip -q /tmp/{skill-name}.skill -d /tmp/skill-extract
+cp -a /tmp/skill-extract/{skill-name} ~/.claude/skills/
+rm -rf /tmp/skill-extract
+```
+The `-a` flag preserves hidden directories like `.claude-plugin/`.
 
 **Step 4: Start a new conversation**
 The user needs to start a new conversation for Claude to see the installed skill.

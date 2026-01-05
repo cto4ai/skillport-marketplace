@@ -1,10 +1,10 @@
 {
   "name": "skillport",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Skillport marketplace API instructions",
   "author": {
-    "name": "Skillport Team",
-    "email": "info@craftycto.com"
+    "name": "Jack Ivers",
+    "email": "jack@anthropic.com"
   },
   "license": "MIT",
   "keywords": [
