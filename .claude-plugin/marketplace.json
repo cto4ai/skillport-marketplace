@@ -72,7 +72,7 @@
       "name": "skillport-repo-utils",
       "source": "./plugins/skillport-repo-utils",
       "description": "Local utilities for managing skills in a Skillport marketplace repo",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "author": {
         "name": "Skillport Team"
       }
