@@ -10,24 +10,6 @@
   },
   "plugins": [
     {
-      "name": "skillport-manager",
-      "source": "./plugins/skillport-manager",
-      "description": "Install skills from Skillport marketplaces for Claude.ai and Claude Desktop.",
-      "version": "3.0.1",
-      "author": {
-        "name": "Crafty CTO"
-      }
-    },
-    {
-      "name": "skillport-code-manager",
-      "source": "./plugins/skillport-code-manager",
-      "description": "Install skills from Skillport marketplaces for Claude Code.",
-      "version": "1.0.1",
-      "author": {
-        "name": "Crafty CTO"
-      }
-    },
-    {
       "name": "data-analyzer",
       "source": "./plugins/data-analyzer",
       "description": "Analyze CSV and JSON data files with statistical summaries and visualizations",
@@ -123,6 +105,28 @@
         "resume",
         "session"
       ]
+    },
+    {
+      "name": "skillport",
+      "source": "./plugins/skillport",
+      "description": "Skillport marketplace API instructions. Teaches Claude how to use the Skillport REST API.",
+      "version": "1.2.9",
+      "category": "development",
+      "keywords": [
+        "skillport",
+        "marketplace",
+        "api",
+        "bootstrap"
+      ]
+    },
+    {
+      "name": "skillport-repo-utils",
+      "source": "./plugins/skillport-repo-utils",
+      "description": "Local utilities for managing skills in a Skillport marketplace repo",
+      "version": "1.1.0",
+      "author": {
+        "name": "Skillport"
+      }
     }
   ]
 }
