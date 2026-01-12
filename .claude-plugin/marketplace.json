@@ -65,7 +65,7 @@
       "name": "skillport",
       "source": "./plugins/skillport",
       "description": "Skillport marketplace API instructions. Teaches Claude how to use the Skillport REST API.",
-      "version": "1.2.4",
+      "version": "1.2.9",
       "category": "development",
       "keywords": [
         "skillport",

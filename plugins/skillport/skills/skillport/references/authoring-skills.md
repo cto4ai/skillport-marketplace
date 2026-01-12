@@ -18,7 +18,7 @@ This applies to:
 - **Save skill** (POST) — creates or updates skill files
 - **Delete skill** (DELETE) — permanently removes a skill
 - **Bump version** (POST) — changes the version number
-- **Publish skill** (POST) — makes a skill public in the marketplace
+- **Publish skill** (POST) — makes a skill discoverable in the marketplace
 
 Read-only operations (Edit/download, Who am I) do not require confirmation.
 
@@ -45,29 +45,96 @@ Before using any authoring operation, you MUST get an auth token:
 
 ---
 
+## Workflow: Create and Publish a New Skill
+
+1. **Save skill** — creates files in the repository
+2. **Test** — fetch the skill by name to verify it works
+3. **Publish skill** — adds to marketplace, making it discoverable
+
+**Important:** Saved skills are NOT listed in `/api/skills` until published. This lets you test before making the skill public. You can still fetch unpublished skills by name using `/api/skills/{name}`.
+
+The API response includes a `published` field (true/false) indicating whether each skill is in the marketplace.
+
+---
+
 ## Create or Update a Skill
 
-Save skill files to the marketplace.
+Save skill files to the repository.
 
 ```bash
 curl -X POST "${base_url}/api/skills/{skill-name}" \
   -H "Authorization: Bearer ${token}" \
   -H "Content-Type: application/json" \
-  -d '{
-    "skill_group": "my-skills",
-    "files": [
-      {"path": "SKILL.md", "content": "---\nname: my-skill\ndescription: Does something\n---\n\n# My Skill\n..."},
-      {"path": "scripts/helper.py", "content": "# helper code..."}
-    ],
-    "commitMessage": "Update skill"
-  }'
+  -d "$(cat payload.json)"
 ```
 
 **Requirements:**
 - `SKILL.md` is required with `name` and `description` in frontmatter
+- `plugin_metadata.description` is **required for new plugins**
 - Paths are relative to the skill directory
 - Empty content string deletes a file (except SKILL.md)
 - New skills require `skill_group` (defaults to skill name if omitted)
+
+**Note:** After saving, the skill exists in the repository but is NOT listed in the marketplace. Use `publish_skill` to make it discoverable. You can still fetch unpublished skills by name for testing.
+
+### Building the Payload
+
+For multi-file skills, build the JSON payload programmatically rather than inline. The `@filename` syntax (`-d @payload.json`) may fail in some environments; use `$(cat)` instead.
+
+**Payload structure:**
+```json
+{
+  "skill_group": "my-skills",
+  "files": [
+    {"path": "SKILL.md", "content": "---\nname: ...\n---\n\n# ..."},
+    {"path": "references/guide.md", "content": "..."},
+    {"path": "scripts/helper.sh", "content": "#!/bin/bash\n..."}
+  ],
+  "commitMessage": "Update skill",
+  "plugin_metadata": {
+    "description": "What this plugin does",
+    "keywords": ["optional", "tags"],
+    "license": "MIT"
+  }
+}
+```
+
+**Plugin Metadata Fields:**
+- `description` (required for new plugins): Brief description of what the plugin does
+- `keywords` (optional): Array of tags for discoverability
+- `author` (optional): `{"name": "...", "email": "..."}` — defaults to authenticated user
+- `license` (optional): License identifier — defaults to "MIT"
+
+For existing plugins, `plugin_metadata` is optional and will merge into the existing `plugin.json`.
+
+**Python helper to build payload from local files:**
+```python
+import json
+import os
+
+def build_skill_payload(skill_dir, skill_group, commit_message, description, keywords=None):
+    """Build Skillport API payload from local skill directory."""
+    files = []
+    for root, _, filenames in os.walk(skill_dir):
+        for filename in filenames:
+            filepath = os.path.join(root, filename)
+            relpath = os.path.relpath(filepath, skill_dir)
+            with open(filepath, 'r') as f:
+                files.append({"path": relpath, "content": f.read()})
+
+    return json.dumps({
+        "skill_group": skill_group,
+        "files": files,
+        "commitMessage": commit_message,
+        "plugin_metadata": {
+            "description": description,
+            "keywords": keywords or []
+        }
+    })
+
+# Usage: python -c "..." > /tmp/payload.json
+# Then: curl ... -d "$(cat /tmp/payload.json)"
+```
 
 ---
 
@@ -92,7 +159,7 @@ Use the Create or Update operation above with the modified files.
 
 ## Delete a Skill
 
-Permanently remove a skill from the marketplace.
+Permanently remove a skill from the repository.
 
 ```bash
 curl -X DELETE "${base_url}/api/skills/{skill-name}?confirm=true" \
@@ -123,7 +190,7 @@ Version types:
 
 ## Publish a Skill
 
-Make a skill discoverable in the marketplace.
+Make a skill discoverable in the marketplace. **Required** for the skill to appear in `/api/skills`.
 
 ```bash
 curl -X POST "${base_url}/api/skills/{skill-name}/publish" \
@@ -136,6 +203,8 @@ curl -X POST "${base_url}/api/skills/{skill-name}/publish" \
     "keywords": ["helper", "utility"]
   }'
 ```
+
+**Note:** You must save the skill first before publishing. Publishing adds the skill to `marketplace.json`, making it discoverable via `/api/skills`.
 
 ---
 
@@ -164,6 +233,8 @@ Useful for adding yourself as an editor in `.skillport/access.json`.
    - Progressive disclosure patterns
    - Naming conventions
    - Writing effective descriptions
+
+4. **Publish workflow**: Remember that `save_skill` creates files but doesn't list the skill. Use `publish_skill` after testing to make it discoverable.
 
 ---
 
