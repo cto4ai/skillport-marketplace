@@ -93,9 +93,11 @@ See if installed skills have newer versions available.
 
 **Step 1: Gather installed skill versions**
 
-Skill versions are stored in `.claude-plugin/plugin.json`, NOT in SKILL.md frontmatter:
-- Project skills: `plugins/{skill-name}/.claude-plugin/plugin.json`
-- User skills: `~/.claude/skills/{skill-name}/.claude-plugin/plugin.json`
+Skill versions are stored in `.claude-plugin/plugin.json`, NOT in SKILL.md frontmatter. The location differs by context:
+
+- **Marketplace repos:** `plugins/{plugin-name}/.claude-plugin/plugin.json`
+  (Note: `plugin-name` is the group containing skills in `plugins/{plugin-name}/skills/*/`)
+- **Installed user skills:** `~/.claude/skills/{skill-name}/.claude-plugin/plugin.json`
 
 Example plugin.json:
 ```json

@@ -71,11 +71,15 @@ if [ -d "$TARGET_PLUGIN_DIR" ]; then
     # Just copy the skill directory
     mkdir -p "$TARGET_PLUGIN_DIR/skills"
     cp -r "$SOURCE_SKILL_DIR" "$TARGET_PLUGIN_DIR/skills/"
+    # Remove any .claude-plugin at skill level (non-compliant per Plugin Marketplace spec)
+    rm -rf "$TARGET_PLUGIN_DIR/skills/$SKILL_NAME/.claude-plugin" 2>/dev/null || true
     echo "Copied skill to: $TARGET_PLUGIN_DIR/skills/$SKILL_NAME"
 else
     # Plugin doesn't exist - copy entire plugin directory
     echo "Copying entire plugin '$SOURCE_PLUGIN_NAME'..."
     cp -r "$SOURCE_PLUGIN_DIR" "$TARGET_PLUGIN_DIR"
+    # Remove any .claude-plugin at skill level (non-compliant per Plugin Marketplace spec)
+    find "$TARGET_PLUGIN_DIR/skills" -mindepth 2 -maxdepth 2 -type d -name ".claude-plugin" -exec rm -rf {} + 2>/dev/null || true
     echo "Copied plugin to: $TARGET_PLUGIN_DIR"
 
     # Add to marketplace.json

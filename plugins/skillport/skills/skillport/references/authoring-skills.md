@@ -222,9 +222,10 @@ Useful for adding yourself as an editor in `.skillport/access.json`.
 
 ## Tips for Authors
 
-1. **Version location**: Skill versions are stored in `.claude-plugin/plugin.json`, NOT in SKILL.md frontmatter:
-   - Project skills: `plugins/{skill-name}/.claude-plugin/plugin.json`
-   - User skills: `~/.claude/skills/{skill-name}/.claude-plugin/plugin.json`
+1. **Version location**: Skill versions are stored in `.claude-plugin/plugin.json`, NOT in SKILL.md frontmatter. The location differs by context:
+   - **Marketplace repos:** `plugins/{plugin-name}/.claude-plugin/plugin.json`
+     (Note: `plugin-name` is the group containing skills in `plugins/{plugin-name}/skills/*/`)
+   - **Installed user skills:** `~/.claude/skills/{skill-name}/.claude-plugin/plugin.json`
 
 2. **Token expiration**: Tokens last 15 minutes. For long editing sessions, check for 401 errors and refresh.
 
@@ -235,6 +236,8 @@ Useful for adding yourself as an editor in `.skillport/access.json`.
    - Writing effective descriptions
 
 4. **Publish workflow**: Remember that `save_skill` creates files but doesn't list the skill. Use `publish_skill` after testing to make it discoverable.
+
+5. **Version management**: Always use the bump API (`/api/skills/{name}/bump`) to increment versions. Never manually edit `plugin.json` — the API keeps Skillport and local installations in sync.
 
 ---
 
