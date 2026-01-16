@@ -26,6 +26,7 @@ Validates a marketplace repo for common issues:
 - Missing required files (plugin.json, SKILL.md)
 - Invalid SKILL.md frontmatter
 - Missing plugin directories (listed in marketplace.json but don't exist)
+- Non-compliant `.claude-plugin/` folders at skill level (should only exist at plugin level)
 
 ```bash
 cd /path/to/your-marketplace

@@ -190,6 +190,11 @@ for i in $(seq 0 $((PLUGIN_COUNT - 1))); do
             error "Skill '$SKILL_NAME': SKILL.md frontmatter missing 'description' field"
         fi
 
+        # Check for non-compliant .claude-plugin at skill level
+        if [ -d "$SKILL_DIR/.claude-plugin" ]; then
+            error "Skill '$SKILL_NAME': has .claude-plugin/ folder (non-compliant - belongs at plugin level only)"
+        fi
+
         ok "Skill '$SKILL_NAME': valid"
     done
 
