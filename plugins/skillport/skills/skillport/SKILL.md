@@ -120,12 +120,12 @@ The `command` field contains the full install command. By default it creates a `
 
 *For Claude Code* — add `--skill` flag to install directly to `~/.claude/skills/`:
 ```bash
-curl -sf https://skillport-connector.jack-ivers.workers.dev/install.sh | bash -s -- {install_token} --skill
+curl -sf {base_url}/install.sh | bash -s -- {install_token} --skill
 ```
 
 *For Claude.ai / Claude Desktop* — use `--package` (default) to create a `.skill` file:
 ```bash
-curl -sf https://skillport-connector.jack-ivers.workers.dev/install.sh | bash -s -- {install_token} --package
+curl -sf {base_url}/install.sh | bash -s -- {install_token} --package
 ```
 Then find the `SKILL_FILE=` path in the output and call `present_files` with it. Tell the user to click "Copy to your skills" button.
 
