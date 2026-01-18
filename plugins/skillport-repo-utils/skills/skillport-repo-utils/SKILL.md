@@ -66,6 +66,20 @@ Summary: 0 error(s), 0 warning(s)
 All checks passed!
 ```
 
+## Surface Tags
+
+The check script validates surface tags in marketplace.json. These indicate which Claude surfaces a skill supports:
+
+| Tag | Surfaces |
+|-----|----------|
+| `surface:CC` | Claude Code only |
+| `surface:CD` | Claude Desktop only |
+| `surface:CAI` | Claude.ai only |
+| `surface:CDAI` | Desktop + Claude.ai |
+| `surface:CALL` | All surfaces |
+
+Tags go in the `tags` array in marketplace.json plugin entries (not in plugin.json).
+
 ## Delete a Skill
 
 Removes a skill and updates marketplace.json. If the skill is the last one in its plugin group, the entire plugin directory is removed.

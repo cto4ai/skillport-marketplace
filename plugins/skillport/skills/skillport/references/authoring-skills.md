@@ -199,12 +199,30 @@ curl -X POST "${base_url}/api/skills/{skill-name}/publish" \
   -d '{
     "description": "Does something useful",
     "category": "productivity",
-    "tags": ["automation"],
+    "tags": ["surface:CALL", "automation"],
     "keywords": ["helper", "utility"]
   }'
 ```
 
 **Note:** You must save the skill first before publishing. Publishing adds the skill to `marketplace.json`, making it discoverable via `/api/skills`.
+
+### Surface Tags (Required)
+
+Every skill must include a surface tag indicating which Claude surfaces it supports:
+
+| Tag | Full Name | When to Use |
+|-----|-----------|-------------|
+| `surface:CC` | Claude Code | Skill requires Bash, file system access |
+| `surface:CD` | Claude Desktop | Skill needs local MCPs |
+| `surface:CAI` | Claude.ai | Web-only features |
+| `surface:CDAI` | Claude Desktop + Claude.ai | Works on both chat surfaces |
+| `surface:CALL` | All Surfaces | Works everywhere (most common) |
+
+**Examples:**
+- A skill that runs shell commands → `surface:CC`
+- A skill that uses a local MCP server → `surface:CD`
+- A skill that only uses API calls → `surface:CALL`
+- A skill that creates `.skill` packages for upload → `surface:CDAI`
 
 ---
 
@@ -238,6 +256,8 @@ Useful for adding yourself as an editor in `.skillport/access.json`.
 4. **Publish workflow**: Remember that `save_skill` creates files but doesn't list the skill. Use `publish_skill` after testing to make it discoverable.
 
 5. **Version management**: Always use the bump API (`/api/skills/{name}/bump`) to increment versions. Never manually edit `plugin.json` — the API keeps Skillport and local installations in sync.
+
+6. **Surface tags**: Always include a `surface:*` tag when publishing. Use `surface:CALL` if your skill works on all surfaces.
 
 ---
 

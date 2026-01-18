@@ -233,6 +233,43 @@ if [ -d "plugins" ]; then
     fi
 fi
 
+# Surface Tag Validation
+echo ""
+echo "## Surface Tag Validation"
+echo ""
+
+VALID_SURFACE_TAGS="surface:CC surface:CD surface:CAI surface:CDAI surface:CALL"
+
+for i in $(seq 0 $((PLUGIN_COUNT - 1))); do
+    PLUGIN_NAME=$(jq -r ".plugins[$i].name" "$MARKETPLACE_FILE")
+    HAS_TAGS=$(jq -e ".plugins[$i].tags" "$MARKETPLACE_FILE" 2>/dev/null) || true
+    
+    if [ $? -ne 0 ]; then
+        # No tags array at all
+        warn "Plugin '$PLUGIN_NAME': no tags array (surface tags recommended)"
+        continue
+    fi
+    
+    # Check for surface tags
+    SURFACE_TAGS=$(jq -r ".plugins[$i].tags[]? | select(startswith(\"surface:\"))" "$MARKETPLACE_FILE" 2>/dev/null)
+    
+    if [ -z "$SURFACE_TAGS" ]; then
+        warn "Plugin '$PLUGIN_NAME': no surface tags (recommended: surface:CC, surface:CD, surface:CAI, surface:CDAI, or surface:CALL)"
+    else
+        # Validate each surface tag
+        INVALID_FOUND=false
+        for TAG in $SURFACE_TAGS; do
+            if ! echo "$VALID_SURFACE_TAGS" | grep -qw "$TAG"; then
+                error "Plugin '$PLUGIN_NAME': invalid surface tag '$TAG' (valid: CC, CD, CAI, CDAI, CALL)"
+                INVALID_FOUND=true
+            fi
+        done
+        if [ "$INVALID_FOUND" = false ]; then
+            ok "Plugin '$PLUGIN_NAME': valid surface tags ($SURFACE_TAGS)"
+        fi
+    fi
+done
+
 # Summary
 echo ""
 echo "==========================================="

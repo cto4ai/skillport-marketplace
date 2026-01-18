@@ -3,8 +3,8 @@
   "version": "1.1.3",
   "description": "Analyze CSV and JSON data files with statistical summaries and visualizations",
   "author": {
-    "name": "Skillport Team",
-    "email": "info@craftycto.com"
+    "name": "Crafty CTO",
+    "email": "jack@craftycto.com"
   },
   "license": "MIT",
   "keywords": ["data", "csv", "json", "analysis", "statistics"]

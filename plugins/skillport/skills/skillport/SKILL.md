@@ -22,11 +22,39 @@ Before using any Skillport operation, you MUST get an auth token:
 | Operation | Method | Endpoint |
 |-----------|--------|----------|
 | List skills | GET | `/api/skills` |
+| List skills (by surface) | GET | `/api/skills?surface=CC` |
 | List skills (force refresh) | GET | `/api/skills?refresh=true` |
 | Get skill details | GET | `/api/skills/{name}` |
 | Install skill | GET | `/api/skills/{name}/install` |
 | Check updates | POST | `/api/check-updates` |
 | Debug: list plugins | GET | `/api/debug/plugins` |
+
+## Surface Tags
+
+Skills are tagged with compatible Claude surfaces:
+
+| Tag | Full Name | Description |
+|-----|-----------|-------------|
+| CC | Claude Code | CLI terminal experience with Bash, file system access |
+| CD | Claude Desktop | Desktop app, may have local MCPs installed |
+| CAI | Claude.ai | Web interface, connectors only |
+| CDAI | Claude Desktop + Claude.ai | Both chat surfaces (shared UI patterns) |
+| CALL | All Surfaces | Works everywhere |
+
+The `list_skills` response includes a `surface_tags` array for each skill.
+
+### Detecting Your Current Surface
+
+To adapt behavior based on surface:
+
+```
+IF Bash tool available:
+  → Claude Code (CC)
+ELSE IF any *-local MCP tools available:
+  → Claude Desktop (CD) with local MCP
+ELSE:
+  → Claude.ai (CAI) or Desktop without local MCPs
+```
 
 ## List Available Skills
 
@@ -36,7 +64,21 @@ Find skills in the marketplace.
 curl -sf "${base_url}/api/skills" -H "Authorization: Bearer ${token}"
 ```
 
-The response includes a `published` field (true/false) for each skill indicating marketplace visibility.
+The response includes:
+- `published` field (true/false) indicating marketplace visibility
+- `surface_tags` array showing compatible surfaces (e.g., `["CC"]`, `["CALL"]`)
+
+### Filter by Surface
+
+Show only skills compatible with a specific surface:
+
+```bash
+curl -sf "${base_url}/api/skills?surface=CC" -H "Authorization: Bearer ${token}"
+```
+
+Valid surface values: `CC`, `CD`, `CAI`, `CDAI`, `CALL`
+
+Skills tagged `CALL` appear in all surface filters. Skills tagged `CDAI` appear in both `CD` and `CAI` filters.
 
 ### Force Cache Refresh
 
@@ -56,7 +98,10 @@ View a skill's SKILL.md content and metadata.
 curl -sf "${base_url}/api/skills/{skill-name}" -H "Authorization: Bearer ${token}"
 ```
 
-Response includes `skill_md` with the full SKILL.md content and a `published` field.
+Response includes:
+- `skill_md` with the full SKILL.md content
+- `published` field (true/false)
+- `surface_tags` array (e.g., `["CALL"]`)
 
 ## Install a Skill
 
@@ -156,3 +201,5 @@ Common errors:
 2. **Claude Code users**: Use `--skill` flag for direct installation to `~/.claude/skills/`. You have direct file system access.
 
 3. **New conversations**: After a user installs a skill, they need to start a new conversation for Claude to see it.
+
+4. **Surface detection**: Check Bash availability to detect Claude Code vs chat surfaces.
