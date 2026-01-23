@@ -92,7 +92,7 @@
       "name": "skillport",
       "source": "./plugins/skillport",
       "description": "Browse and install skills from the Skillport marketplace",
-      "version": "1.3.1",
+      "version": "1.3.4",
       "category": "development",
       "keywords": [
         "skillport",

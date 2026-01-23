@@ -32,6 +32,8 @@ Before using any authoring operation, you MUST get an auth token:
 2. You'll receive a `token` and `base_url`
 3. The token expires in 15 minutes — get a new one if needed
 
+**See [Using the Token](../SKILL.md#using-the-token) for how to properly store and use these values in curl commands.**
+
 ## Quick Reference
 
 | Operation | Method | Endpoint |
@@ -62,8 +64,8 @@ The API response includes a `published` field (true/false) indicating whether ea
 Save skill files to the repository.
 
 ```bash
-curl -X POST "${base_url}/api/skills/{skill-name}" \
-  -H "Authorization: Bearer ${token}" \
+curl -X POST "$BASE_URL/api/skills/{skill-name}" \
+  -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d "$(cat payload.json)"
 ```
@@ -144,7 +146,7 @@ Download all files for local editing.
 
 **Step 1: Get edit command**
 ```bash
-curl -sf "${base_url}/api/skills/{skill-name}/edit" -H "Authorization: Bearer ${token}"
+curl -sf "$BASE_URL/api/skills/{skill-name}/edit" -H "Authorization: Bearer $TOKEN"
 ```
 
 **Step 2: Execute the returned command**
@@ -162,8 +164,8 @@ Use the Create or Update operation above with the modified files.
 Permanently remove a skill from the repository.
 
 ```bash
-curl -X DELETE "${base_url}/api/skills/{skill-name}?confirm=true" \
-  -H "Authorization: Bearer ${token}"
+curl -X DELETE "$BASE_URL/api/skills/{skill-name}?confirm=true" \
+  -H "Authorization: Bearer $TOKEN"
 ```
 
 **Warning:** This is irreversible. The `confirm=true` parameter is required.
@@ -175,8 +177,8 @@ curl -X DELETE "${base_url}/api/skills/{skill-name}?confirm=true" \
 Increment a skill's version number.
 
 ```bash
-curl -X POST "${base_url}/api/skills/{skill-name}/bump" \
-  -H "Authorization: Bearer ${token}" \
+curl -X POST "$BASE_URL/api/skills/{skill-name}/bump" \
+  -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"type": "minor"}'
 ```
@@ -193,15 +195,10 @@ Version types:
 Make a skill discoverable in the marketplace. **Required** for the skill to appear in `/api/skills`.
 
 ```bash
-curl -X POST "${base_url}/api/skills/{skill-name}/publish" \
-  -H "Authorization: Bearer ${token}" \
+curl -X POST "$BASE_URL/api/skills/{skill-name}/publish" \
+  -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{
-    "description": "Does something useful",
-    "category": "productivity",
-    "tags": ["surface:CALL", "automation"],
-    "keywords": ["helper", "utility"]
-  }'
+  -d '{"description": "Does something useful", "category": "productivity", "tags": ["surface:CALL", "automation"], "keywords": ["helper", "utility"]}'
 ```
 
 **Note:** You must save the skill first before publishing. Publishing adds the skill to `marketplace.json`, making it discoverable via `/api/skills`.
@@ -231,7 +228,7 @@ Every skill must include a surface tag indicating which Claude surfaces it suppo
 Find out who you're authenticated as.
 
 ```bash
-curl -sf "${base_url}/api/whoami" -H "Authorization: Bearer ${token}"
+curl -sf "$BASE_URL/api/whoami" -H "Authorization: Bearer $TOKEN"
 ```
 
 Useful for adding yourself as an editor in `.skillport/access.json`.
@@ -276,3 +273,4 @@ Common errors:
 - `403 Forbidden`: You don't have access to this skill/operation
 - `404 Not Found`: Skill doesn't exist
 - `400 Bad Request`: Invalid parameters (check the message for details)
+- `curl: option : blank argument`: Token variable is empty or unset — see [Using the Token](../SKILL.md#using-the-token)
